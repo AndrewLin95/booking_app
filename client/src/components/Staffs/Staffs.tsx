@@ -6,7 +6,9 @@ const Staffs = () => {
     <div className="staffsContainer">
       <div className="cardHeader">Staffs </div>
       <div className="cardSeparator"></div>
-      <StaffsCard />
+      <div className="cardMainContainer">
+        <StaffsCard />
+      </div>
     </div>
   );
 };

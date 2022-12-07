@@ -6,7 +6,9 @@ const Services = () => {
     <div className="servicesContainer">
       <div className="cardHeader">Services </div>
       <div className="cardSeparator"></div>
-      <ServicesCard />
+      <div className="cardMainContainer">
+        <ServicesCard />
+      </div>
     </div>
   );
 };
