@@ -3,7 +3,7 @@ import GuestCard from './GuestCard';
 
 const Guests = () => {
   return (
-    <div>
+    <div className="guestsContainer">
       <div>
         <GuestCard />
       </div>

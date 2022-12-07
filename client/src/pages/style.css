@@ -1,0 +1,19 @@
+.milanoBookingMain{
+  height: 100vh;;
+  display: flex;
+  gap: 16px;
+}
+
+.guestsContainer,
+.staffsContainer,
+.servicesContainer {
+  width: 15vw;
+  height: 100%;
+  padding: 10px;
+  border: solid 1px red;
+}
+
+.appointmentsContainer{
+  width: calc(100vw - 45vw - 16px);
+  border: solid 1px red;
+}
