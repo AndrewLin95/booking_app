@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { FC } from 'react';
 import GuestCard from './GuestCard';
 
-const Guests = () => {
+interface Props {
+  testAPI: () => void;
+}
+
+const Guests: FC<Props> = ({ testAPI }) => {
   return (
     <div className="guestsContainer">
       <div className="cardHeader"> Guests </div>
@@ -9,7 +13,7 @@ const Guests = () => {
       <div className="cardMainContainer">
         <GuestCard />
       </div>
-      <button>button</button>
+      <button onClick={testAPI}>button</button>
     </div>
   );
 };
