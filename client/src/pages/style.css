@@ -27,10 +27,32 @@
   text-align: left;
 }
 
+/* Global Card Styling */
 .cardHeader{
   font-weight: bold;
 }
 
 .cardSeparator{
   border: 1px solid lightgrey;
+}
+
+.cardContainer{
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  border: solid 1px rgba(255,255,255, 0.4);
+  padding: 5px;
+}
+
+.cardName{
+  font-size: 1.3rem;
+}
+
+.cardPhoneNumber,
+.cardEmail{
+  font-size: 1rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 5px;
 }
