@@ -8,9 +8,10 @@
 
 .guestsContainer,
 .staffsContainer,
-.servicesContainer {
+.servicesContainer,
+.appointmentsContainer {
   width: 15vw;
-  height: 100%;
+  height: calc(100% - 25px);
   padding: 10px;
   border: solid 1px white;
   display: flex;
@@ -21,15 +22,16 @@
 
 .appointmentsContainer{
   width: calc(100vw - 45vw - 16px);
-  border: solid 1px white;
-  display: flex;
-  flex-direction: column;
-  text-align: left;
+}
+
+.cardMainContainer{
+  height: 90%;
 }
 
 /* Global Card Styling */
 .cardHeader{
   font-weight: bold;
+  font-size: 2rem;
 }
 
 .cardSeparator{

@@ -5,6 +5,7 @@ const Services = () => {
   return (
     <div className="servicesContainer">
       <div className="cardHeader">Services </div>
+      <div className="cardSeparator"></div>
       <ServicesCard />
     </div>
   );

@@ -6,7 +6,10 @@ const Guests = () => {
     <div className="guestsContainer">
       <div className="cardHeader"> Guests </div>
       <div className="cardSeparator"></div>
-      <GuestCard />
+      <div className="cardMainContainer">
+        <GuestCard />
+      </div>
+      <button>button</button>
     </div>
   );
 };
