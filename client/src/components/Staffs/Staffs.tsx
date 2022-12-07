@@ -1,9 +1,12 @@
 import React from 'react';
+import StaffsCard from './StaffsCard';
 
 const Staffs = () => {
   return (
     <div className="staffsContainer">
-      <div>Staffs</div>
+      <div className="cardHeader">Staffs </div>
+      <div className="cardSeparator"></div>
+      <StaffsCard />
     </div>
   );
 };

@@ -6,9 +6,7 @@ const Guests = () => {
     <div className="guestsContainer">
       <div className="cardHeader"> Guests </div>
       <div className="cardSeparator"></div>
-      <div>
-        <GuestCard />
-      </div>
+      <GuestCard />
     </div>
   );
 };

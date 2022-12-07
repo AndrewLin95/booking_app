@@ -1,9 +1,11 @@
 import React from 'react';
+import ServicesCard from './ServicesCard';
 
 const Services = () => {
   return (
     <div className="servicesContainer">
-      <div>Services</div>
+      <div className="cardHeader">Services </div>
+      <ServicesCard />
     </div>
   );
 };
