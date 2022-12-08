@@ -1,13 +1,20 @@
-import React from 'react';
+import React, { FC } from 'react';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
+import { StaffsInterface } from '../../util/models';
 
-const StaffsCard = () => {
+interface Props {
+  staff: StaffsInterface;
+}
+
+const StaffsCard: FC<Props> = ({ staff }) => {
   return (
     <div className="cardContainer">
-      <div className="cardName">Name</div>
+      <div className="cardName">
+        {staff.firstName} {staff.lastName}
+      </div>
       <div className="cardDescription">
         <ArrowRightIcon />
-        Title
+        {staff.title}
       </div>
     </div>
   );

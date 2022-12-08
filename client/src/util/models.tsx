@@ -10,3 +10,9 @@ export interface StaffsInterface {
   lastName: string;
   title: string;
 }
+
+export interface ServicesInterface {
+  serviceHeader: string;
+  serviceName: string;
+  servicePrice: number;
+}

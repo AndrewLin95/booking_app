@@ -5,7 +5,11 @@ import Services from '../components/Services/Services';
 import Staffs from '../components/Staffs/Staffs';
 import AddPopup from '../components/Popup/AddPopup';
 import './style.css';
-import { GuestsInterface, StaffsInterface } from '../util/models';
+import {
+  GuestsInterface,
+  StaffsInterface,
+  ServicesInterface
+} from '../util/models';
 import getInitData from '../apiCalls/getInitData';
 
 const MilanoBooking = () => {
@@ -18,6 +22,10 @@ const MilanoBooking = () => {
   const _staffInterface = {} as StaffsInterface;
   const [staffState, setStaffState] =
     useState<StaffsInterface>(_staffInterface);
+
+  const _serviceInterface = {} as ServicesInterface;
+  const [serviceState, setServiceState] =
+    useState<ServicesInterface>(_serviceInterface);
 
   const handleAddBtnClick = () => {
     setShowPopup(true);
@@ -35,6 +43,7 @@ const MilanoBooking = () => {
       const data = await getInitData();
       setGuestState(data?.dataGuest.guests);
       setStaffState(data?.dataStaff.staffs);
+      setServiceState(data?.dataService);
       setLoading(false);
     };
 
@@ -45,30 +54,30 @@ const MilanoBooking = () => {
     console.log(staffState);
   }, [staffState]);
 
-  // Test API
-  const testAPI = async () => {
-    console.log('test click');
+  // // Test API
+  // const testAPI = async () => {
+  //   console.log('test click');
 
-    const data = {
-      serviceHeader: 'Color',
-      serviceName: 'Color',
-      servicePrice: 40
-    };
+  //   const data = {
+  //     serviceHeader: 'Color',
+  //     serviceName: 'Color',
+  //     servicePrice: 40
+  //   };
 
-    const url = '/api/services';
-    const requestOptions = {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
-    };
+  //   const url = '/api/services';
+  //   const requestOptions = {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json'
+  //     },
+  //     body: JSON.stringify(data)
+  //   };
 
-    const response = await fetch(url, requestOptions);
-    // const data = await response.json();
+  //   const response = await fetch(url, requestOptions);
+  //   // const data = await response.json();
 
-    // console.log(data);
-  };
+  //   // console.log(data);
+  // };
 
   // const getInitalizationData = () => {
   //   // call to mongo to add guest to DB
@@ -77,13 +86,17 @@ const MilanoBooking = () => {
   return (
     <div className="milanoBookingMain">
       {showPopup && <AddPopup closePopup={closePopup} />}
-      <button onClick={testAPI}>TEST</button>
+      {/* <button onClick={testAPI}>TEST</button> */}
       <Guests
         handleAddBtnClick={handleAddBtnClick}
         guestState={guestState}
         loading={loading}
       />
-      <Staffs />
+      <Staffs
+        handleAddBtnClick={handleAddBtnClick}
+        staffState={staffState}
+        loading={loading}
+      />
       <Services />
       <Appointments />
     </div>
