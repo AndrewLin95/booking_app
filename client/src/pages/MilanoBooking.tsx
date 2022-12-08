@@ -5,7 +5,8 @@ import Services from '../components/Services/Services';
 import Staffs from '../components/Staffs/Staffs';
 import AddPopup from '../components/Popup/AddPopup';
 import './style.css';
-import { GuestsInterface } from '../util/models';
+import { GuestsInterface, StaffsInterface } from '../util/models';
+import getInitData from '../apiCalls/getInitData';
 
 const MilanoBooking = () => {
   const [showPopup, setShowPopup] = useState(false);
@@ -13,6 +14,10 @@ const MilanoBooking = () => {
 
   const _guestState = {} as GuestsInterface;
   const [guestState, setGuestState] = useState<GuestsInterface>(_guestState);
+
+  const _staffInterface = {} as StaffsInterface;
+  const [staffState, setStaffState] =
+    useState<StaffsInterface>(_staffInterface);
 
   const handleAddBtnClick = () => {
     setShowPopup(true);
@@ -25,42 +30,44 @@ const MilanoBooking = () => {
   // on mount, retrieve initial data
   useEffect(() => {
     setLoading(true);
-    const fetchInitData = async () => {
-      const url = '/api/guests';
-      const requestOptions = {
-        method: 'GET'
-      };
 
-      try {
-        const response = await fetch(url, requestOptions);
-        const data = await response.json();
-        setGuestState(data.guests);
-        setLoading(false);
-      } catch (err) {
-        console.log(err);
-      }
+    const pullInitData = async () => {
+      const data = await getInitData();
+      setGuestState(data?.dataGuest.guests);
+      setStaffState(data?.dataStaff.staffs);
+      setLoading(false);
     };
 
-    fetchInitData();
+    pullInitData();
   }, []);
 
   useEffect(() => {
-    console.log(guestState);
-  }, [guestState]);
+    console.log(staffState);
+  }, [staffState]);
 
+  //Test API
   // const testAPI = async () => {
-  //   // test api
   //   console.log('test click');
 
-  //   const url = '/api/guests';
+  //   const data = {
+  //     firstName: 'Ronald',
+  //     lastName: 'Klein',
+  //     title: 'Hair Stylist'
+  //   };
+
+  //   const url = '/api/staffs';
   //   const requestOptions = {
-  //     method: 'POST'
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json'
+  //     },
+  //     body: JSON.stringify(data)
   //   };
 
   //   const response = await fetch(url, requestOptions);
-  //   const data = await response.json();
+  //   // const data = await response.json();
 
-  //   console.log(data);
+  //   // console.log(data);
   // };
 
   // const getInitalizationData = () => {
@@ -70,6 +77,7 @@ const MilanoBooking = () => {
   return (
     <div className="milanoBookingMain">
       {showPopup && <AddPopup closePopup={closePopup} />}
+      {/* <button onClick={testAPI}>TEST</button> */}
       <Guests
         handleAddBtnClick={handleAddBtnClick}
         guestState={guestState}
