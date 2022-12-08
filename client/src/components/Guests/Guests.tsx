@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import { GuestsInterface } from '../../util/models';
 import GuestCard from './GuestCard';
+import AddIcon from '@mui/icons-material/Add';
 
 interface Props {
   handleAddBtnClick: () => void;
@@ -23,7 +24,11 @@ const Guests: FC<Props> = ({ handleAddBtnClick, guestState, loading }) => {
           return <GuestCard key={key} guest={value} />;
         })}
       </div>
-      <button onClick={handleAddBtnClick}>button</button>
+      <div className="addBtnContainer">
+        <button className="addBtn" onClick={handleAddBtnClick}>
+          <AddIcon fontSize="large" />
+        </button>
+      </div>
     </div>
   );
 };

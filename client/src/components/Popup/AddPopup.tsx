@@ -8,10 +8,8 @@ interface Props {
 
 const AddPopup: FC<Props> = ({ closePopup }) => {
   return (
-    <div className="addPopupContainer" onClick={() => closePopup()}>
-      <div>
-        <AddGuest closePopup={closePopup} />
-      </div>
+    <div className="addPopupContainer">
+      <AddGuest closePopup={closePopup} />
     </div>
   );
 };

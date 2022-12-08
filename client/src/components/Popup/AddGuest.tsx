@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import CloseIcon from '@mui/icons-material/Close';
 
 interface Props {
   closePopup: () => void;
@@ -35,7 +36,12 @@ const AddGuest: FC<Props> = ({ closePopup }) => {
 
   return (
     <div className="addInfoContainer">
-      <div className="formHeader">Add Guests</div>
+      <div className="formHeader">
+        <div>Add Guests</div>
+        <button className="closeBtn" onClick={() => closePopup()}>
+          <CloseIcon />
+        </button>
+      </div>
       <form
         className="formContainer"
         onSubmit={(e) => {

@@ -63,3 +63,16 @@
   align-items: center;
   gap: 5px;
 }
+
+.addBtnContainer{
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.addBtn{
+  background-color: transparent;
+  border: none;
+  color: darkorange;
+}
