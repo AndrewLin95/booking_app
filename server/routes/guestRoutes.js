@@ -4,13 +4,6 @@ const bodyParser = require("body-parser");
 const app = express();
 app.use(bodyParser.json());
 
-// const testData = {
-//   firstName: "Michael",
-//   lastName: "Doherty",
-//   phoneNumber: "111-111-3333",
-//   email: "michael@test.com"
-// }
-
 // retrieve guest information
 app.get('/api/guests', async (req, res) => {
   try {
