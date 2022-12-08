@@ -1,13 +1,15 @@
 const express = require("express");
 const MilanoGuest = require('../models/MilanoGuest');
+const bodyParser = require("body-parser");
 const app = express();
+app.use(bodyParser.json());
 
-const testData = {
-  firstName: "Michael",
-  lastName: "Doherty",
-  phoneNumber: "111-111-3333",
-  email: "michael@test.com"
-}
+// const testData = {
+//   firstName: "Michael",
+//   lastName: "Doherty",
+//   phoneNumber: "111-111-3333",
+//   email: "michael@test.com"
+// }
 
 // retrieve guest information
 app.get('/api/guests', async (req, res) => {
@@ -21,8 +23,9 @@ app.get('/api/guests', async (req, res) => {
 })
 
 app.post('/api/guests', async (req, res) => {
+  let guestObj = req.body;
   try {
-    const guest = new MilanoGuest(testData);
+    const guest = new MilanoGuest(guestObj);
     await guest.save();
   } catch (err) {
     res.status(500).send(err);
