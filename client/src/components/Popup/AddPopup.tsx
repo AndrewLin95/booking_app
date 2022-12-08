@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import AddGuest from './AddGuest';
 import AddStaff from './AddStaff';
+import AddService from './AddService';
 import { GUEST, STAFF, SERVICE } from '../../util/constants';
 import './style.css';
 
@@ -26,7 +27,7 @@ const AddPopup: FC<Props> = ({ closePopup, popupState }) => {
     case SERVICE:
       return (
         <div className="addPopupContainer">
-          <AddGuest closePopup={closePopup} />
+          <AddService closePopup={closePopup} />
         </div>
       );
     default:
