@@ -1,7 +1,11 @@
 const mongoose = require("mongoose");
 
 const GuestSchema = new mongoose.Schema({
-  name: {
+  firstName: {
+    type: String,
+    required: true,
+  },
+  lastName: {
     type: String,
     required: true,
   },
@@ -13,8 +17,8 @@ const GuestSchema = new mongoose.Schema({
     type: String,
     required: true,
   }
-})
+}, {versionKey: false})
 
-const Guests = mongoose.model('Guests', GuestSchema);
+const MilanoGuest = mongoose.model('MilanoGuest', GuestSchema);
 
-module.exports = Guests;
+module.exports = MilanoGuest;

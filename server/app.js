@@ -1,5 +1,5 @@
 const path = require('path')
-require('dotenv').config({ path: path.resolve(__dirname, '../.env') })
+require('dotenv').config()
 const bodyParser = require("body-parser");
 const express = require("express");
 const PORT = process.env.PORT || 8080;
@@ -18,24 +18,20 @@ db.on('error', console.error.bind(console, 'MongoDB connection error'));
 db.once("open", () => console.log("Connected to DB!"));
 
 
-// app.use(guestRouter);
+app.use(guestRouter);
 
-// const express = require("express");
-// const guestModel = require('../models/guests');
-// const app = express();
 
-const guestModel = require('./models/guests');
+// const MilanoGuest = require('./models/MilanoGuest');
 
-app.get('api/guests', async (req, res) => {
-  const guests = await guestModel.find({});
-  console.log(guests);
-  
-  try {
-    res.send(guests);
-  } catch (err) {
-    this.res.status(500).send(error);
-  }
-})
+// app.get('/api/guests', async (req, res) => {
+//   try {
+//     const guests = await MilanoGuest.find({});
+//     console.log(guests);
+//     res.status(200).json({ guests : guests});
+//   } catch (err) {
+//     this.res.status(500).send(error);
+//   }
+// })
 
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
