@@ -25,6 +25,7 @@ app.post('/api/staffs', async (req, res) => {
   try {
     const staffs = new MilanoStaff(staffObj);
     await staffs.save();
+    res.sendStatus(200);
   } catch (err) {
     res.status(500).send(err);
   }
