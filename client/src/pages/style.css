@@ -27,6 +27,9 @@
 
 .cardMainContainer{
   height: 90%;
+  gap: 10px;
+  display: flex;
+  flex-direction: column;
 }
 
 /* Global Card Styling */
