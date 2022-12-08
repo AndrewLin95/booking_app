@@ -8,7 +8,6 @@ app.use(bodyParser.json());
 app.get('/api/guests', async (req, res) => {
   try {
     const guests = await MilanoGuest.find({});
-    console.log(guests);
     res.status(200).json({ guests : guests});
   } catch (err) {
     res.status(500).send(err);

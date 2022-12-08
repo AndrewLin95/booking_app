@@ -8,6 +8,7 @@ app.use(bodyParser.json());
 
 //Paths
 const guestRouter = require('./routes/guestRoutes');
+const staffRouter = require('./routes/staffRoute')
 
 //Set up mongoose connection
 const mongoose = require('mongoose');
@@ -19,7 +20,7 @@ db.once("open", () => console.log("Connected to DB!"));
 
 //Routes
 app.use(guestRouter);
-
+app.use(staffRouter)
 
 // const MilanoGuest = require('./models/MilanoGuest');
 
