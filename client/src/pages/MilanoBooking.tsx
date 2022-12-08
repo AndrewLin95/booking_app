@@ -45,30 +45,30 @@ const MilanoBooking = () => {
     console.log(staffState);
   }, [staffState]);
 
-  //Test API
-  // const testAPI = async () => {
-  //   console.log('test click');
+  // Test API
+  const testAPI = async () => {
+    console.log('test click');
 
-  //   const data = {
-  //     firstName: 'Ronald',
-  //     lastName: 'Klein',
-  //     title: 'Hair Stylist'
-  //   };
+    const data = {
+      serviceHeader: 'Color',
+      serviceName: 'Color',
+      servicePrice: 40
+    };
 
-  //   const url = '/api/staffs';
-  //   const requestOptions = {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json'
-  //     },
-  //     body: JSON.stringify(data)
-  //   };
+    const url = '/api/services';
+    const requestOptions = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    };
 
-  //   const response = await fetch(url, requestOptions);
-  //   // const data = await response.json();
+    const response = await fetch(url, requestOptions);
+    // const data = await response.json();
 
-  //   // console.log(data);
-  // };
+    // console.log(data);
+  };
 
   // const getInitalizationData = () => {
   //   // call to mongo to add guest to DB
@@ -77,7 +77,7 @@ const MilanoBooking = () => {
   return (
     <div className="milanoBookingMain">
       {showPopup && <AddPopup closePopup={closePopup} />}
-      {/* <button onClick={testAPI}>TEST</button> */}
+      <button onClick={testAPI}>TEST</button>
       <Guests
         handleAddBtnClick={handleAddBtnClick}
         guestState={guestState}
