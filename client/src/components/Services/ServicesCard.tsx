@@ -1,13 +1,18 @@
-import React from 'react';
+import React, { FC } from 'react';
+import { ServicesInterface } from '../../util/models';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 
-const ServicesCard = () => {
+interface Props {
+  service: ServicesInterface;
+}
+
+const ServicesCard: FC<Props> = ({ service }) => {
   return (
     <div className="cardContainer">
-      <div className="cardName">Service</div>
+      <div className="cardName">{service.serviceHeader}</div>
       <div className="cardDescription">
         <ArrowRightIcon />
-        Description and Price
+        {service.serviceName} ${service.servicePrice}
       </div>
     </div>
   );

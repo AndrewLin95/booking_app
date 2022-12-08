@@ -13,6 +13,7 @@ import {
 import getInitData from '../apiCalls/getInitData';
 
 const MilanoBooking = () => {
+  const [popupState, setPopupState] = useState('');
   const [showPopup, setShowPopup] = useState(false);
   const [loading, setLoading] = useState(true);
 
@@ -27,7 +28,8 @@ const MilanoBooking = () => {
   const [serviceState, setServiceState] =
     useState<ServicesInterface>(_serviceInterface);
 
-  const handleAddBtnClick = () => {
+  const handleAddBtnClick = (category: string) => {
+    setPopupState(category);
     setShowPopup(true);
   };
 
@@ -43,7 +45,7 @@ const MilanoBooking = () => {
       const data = await getInitData();
       setGuestState(data?.dataGuest.guests);
       setStaffState(data?.dataStaff.staffs);
-      setServiceState(data?.dataService);
+      setServiceState(data?.dataService.services);
       setLoading(false);
     };
 
@@ -85,7 +87,9 @@ const MilanoBooking = () => {
 
   return (
     <div className="milanoBookingMain">
-      {showPopup && <AddPopup closePopup={closePopup} />}
+      {showPopup && (
+        <AddPopup closePopup={closePopup} popupState={popupState} />
+      )}
       {/* <button onClick={testAPI}>TEST</button> */}
       <Guests
         handleAddBtnClick={handleAddBtnClick}
@@ -97,7 +101,11 @@ const MilanoBooking = () => {
         staffState={staffState}
         loading={loading}
       />
-      <Services />
+      <Services
+        handleAddBtnClick={handleAddBtnClick}
+        serviceState={serviceState}
+        loading={loading}
+      />
       <Appointments />
     </div>
   );

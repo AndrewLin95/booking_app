@@ -4,7 +4,7 @@ import StaffsCard from './StaffsCard';
 import AddIcon from '@mui/icons-material/Add';
 
 interface Props {
-  handleAddBtnClick: () => void;
+  handleAddBtnClick: (category: string) => void;
   staffState: StaffsInterface;
   loading: boolean;
 }
@@ -25,7 +25,7 @@ const Staffs: FC<Props> = ({ handleAddBtnClick, staffState, loading }) => {
         })}
       </div>
       <div className="addBtnContainer">
-        <button className="addBtn" onClick={handleAddBtnClick}>
+        <button className="addBtn" onClick={() => handleAddBtnClick('staff')}>
           <AddIcon fontSize="large" />
         </button>
       </div>

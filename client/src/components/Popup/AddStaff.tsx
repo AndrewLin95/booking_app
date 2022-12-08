@@ -5,18 +5,17 @@ interface Props {
   closePopup: () => void;
 }
 
-const AddGuest: FC<Props> = ({ closePopup }) => {
+const AddStaff: FC<Props> = ({ closePopup }) => {
   const submitToMongo = async (e: any) => {
     e.preventDefault();
 
     const data = {
       firstName: e.target.firstName.value,
       lastName: e.target.lastName.value,
-      phoneNumber: e.target.phoneNumber.value,
-      email: e.target.email.value
+      title: e.target.title.value
     };
 
-    const url = '/api/guests';
+    const url = '/api/staffs';
     const requestOptions = {
       method: 'POST',
       headers: {
@@ -37,7 +36,7 @@ const AddGuest: FC<Props> = ({ closePopup }) => {
   return (
     <div className="addInfoContainer">
       <div className="formHeader">
-        <div>Add Guests</div>
+        <div>Add Staffs</div>
         <button className="closeBtn" onClick={() => closePopup()}>
           <CloseIcon />
         </button>
@@ -61,13 +60,11 @@ const AddGuest: FC<Props> = ({ closePopup }) => {
           required
         ></input>
         <input
-          name="phoneNumber"
-          type={'tel'}
-          pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-          placeholder="Phone Number (111-111-1111)"
+          name="title"
+          type={'text'}
+          placeholder="Job Title"
           required
         ></input>
-        <input name="email" type={'email'} placeholder="Email" required></input>
         <div className="formBtnContainer">
           <button className="formBtn" type="submit">
             Add
@@ -78,4 +75,4 @@ const AddGuest: FC<Props> = ({ closePopup }) => {
   );
 };
 
-export default AddGuest;
+export default AddStaff;

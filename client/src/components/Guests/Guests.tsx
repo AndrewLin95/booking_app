@@ -1,10 +1,11 @@
 import React, { FC } from 'react';
 import { GuestsInterface } from '../../util/models';
+import { GUEST } from '../../util/constants';
 import GuestCard from './GuestCard';
 import AddIcon from '@mui/icons-material/Add';
 
 interface Props {
-  handleAddBtnClick: () => void;
+  handleAddBtnClick: (category: string) => void;
   guestState: GuestsInterface;
   loading: boolean;
 }
@@ -25,7 +26,7 @@ const Guests: FC<Props> = ({ handleAddBtnClick, guestState, loading }) => {
         })}
       </div>
       <div className="addBtnContainer">
-        <button className="addBtn" onClick={handleAddBtnClick}>
+        <button className="addBtn" onClick={() => handleAddBtnClick(GUEST)}>
           <AddIcon fontSize="large" />
         </button>
       </div>
