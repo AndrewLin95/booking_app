@@ -2,10 +2,10 @@ import React, { FC } from 'react';
 import GuestCard from './GuestCard';
 
 interface Props {
-  testAPI: () => void;
+  handleAddBtnClick: () => void;
 }
 
-const Guests: FC<Props> = ({ testAPI }) => {
+const Guests: FC<Props> = ({ handleAddBtnClick }) => {
   return (
     <div className="guestsContainer">
       <div className="cardHeader"> Guests </div>
@@ -13,7 +13,7 @@ const Guests: FC<Props> = ({ testAPI }) => {
       <div className="cardMainContainer">
         <GuestCard />
       </div>
-      <button onClick={testAPI}>button</button>
+      <button onClick={handleAddBtnClick}>button</button>
     </div>
   );
 };

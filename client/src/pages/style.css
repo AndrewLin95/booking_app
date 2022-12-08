@@ -1,9 +1,10 @@
 /* Global Styles */
 
 .milanoBookingMain{
-  height: 100vh;;
+  height: 100vh;
   display: flex;
   gap: 16px;
+  overflow: hidden;
 }
 
 .guestsContainer,
