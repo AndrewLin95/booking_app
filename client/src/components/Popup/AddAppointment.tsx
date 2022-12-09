@@ -68,8 +68,15 @@ const AddAppointment: FC<Props> = ({
 
     try {
       closePopup();
-      updatePageStates(APPOINTMENT, data);
-      await fetch(url, requestOptions);
+
+      const response = await fetch(url, requestOptions);
+      const _data = await response.json();
+      console.log(_data);
+      if (_data.status === 'success') {
+        updatePageStates(APPOINTMENT, data);
+      } else {
+        return;
+      }
     } catch (err) {
       // TODO: Error modal
       console.log(err);
