@@ -163,6 +163,7 @@ const MilanoBooking = () => {
         handleAddBtnClick={handleAddBtnClick}
         appointmentState={appointmentState}
         loading={loading}
+        setAppointmentState={setAppointmentState}
       />
     </div>
   );

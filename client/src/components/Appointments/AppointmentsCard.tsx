@@ -19,6 +19,9 @@ const AppointmentsCard: FC<Props> = ({ appointment }) => {
   );
   const startTime = formatAppointmentStartTime(appointment.startTime);
 
+  // const startTime = 0;
+  // const endTime = 123;
+
   return (
     <div className="cardContainerAppointment">
       <div className="cardContentAppointment">

@@ -9,21 +9,48 @@ interface Props {
   handleAddBtnClick: (category: string) => void;
   appointmentState: AppointmentsInterface[];
   loading: boolean;
+  setAppointmentState: React.Dispatch<
+    React.SetStateAction<AppointmentsInterface[]>
+  >;
 }
 
 const Appointments: FC<Props> = ({
   handleAddBtnClick,
   appointmentState,
-  loading
+  loading,
+  setAppointmentState
 }) => {
   const [date, setDate] = useState('');
+  const [reload, setReload] = useState(false);
+
   useEffect(() => {
     const today = retrieveTodayDate();
     setDate(today);
   }, []);
 
-  const handleDateChange = (e: any) => {
+  // to pull all appointments from that date only
+  const handleDateChange = async (e: any) => {
+    setReload(true);
     setDate(e.target.value);
+
+    const url = `/api/appointments/${e.target.value}`;
+    const requestOptions = {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    };
+
+    try {
+      const response = await fetch(url, requestOptions);
+      const data = await response.json();
+      console.log(data);
+      setAppointmentState(data.appointments);
+      setReload(false);
+    } catch (err) {
+      // TODO: Error model
+      console.log(err);
+    }
   };
 
   // TODO: Loading Skeleton
@@ -31,6 +58,7 @@ const Appointments: FC<Props> = ({
     return null;
   }
 
+  console.log(appointmentState);
   return (
     <div className="appointmentsContainer">
       <div className="cardHeader">Appointments </div>
@@ -43,11 +71,13 @@ const Appointments: FC<Props> = ({
           handleDateChange(e);
         }}
       />
-      <div className="cardMainContainer">
-        {Object.entries(appointmentState).map(([key, value]) => {
-          return <AppointmentsCard key={key} appointment={value} />;
-        })}
-      </div>
+      {!reload && (
+        <div className="cardMainContainer">
+          {Object.entries(appointmentState).map(([key, value]) => {
+            return <AppointmentsCard key={key} appointment={value} />;
+          })}
+        </div>
+      )}
       <div className="addBtnContainer">
         <button
           className="addBtn"
