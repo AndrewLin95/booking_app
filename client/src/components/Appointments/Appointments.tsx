@@ -53,6 +53,29 @@ const Appointments: FC<Props> = ({
     }
   };
 
+  // pulls all appointment data
+  const removeFilter = async () => {
+    setReload(true);
+    const url = `/api/appointments/`;
+    const requestOptions = {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    };
+
+    try {
+      const response = await fetch(url, requestOptions);
+      const data = await response.json();
+      console.log(data);
+      setAppointmentState(data.appointments);
+      setReload(false);
+    } catch (err) {
+      // TODO: Error model
+      console.log(err);
+    }
+  };
+
   // TODO: Loading Skeleton
   if (loading) {
     return null;
@@ -61,7 +84,13 @@ const Appointments: FC<Props> = ({
   console.log(appointmentState);
   return (
     <div className="appointmentsContainer">
-      <div className="cardHeader">Appointments </div>
+      <div className="cardHeaderContainer">
+        <div className="cardHeader">Appointments</div>
+        <button className="editBtn" onClick={removeFilter}>
+          Get All Dates
+        </button>
+      </div>
+
       <div className="cardSeparator"></div>
       <input
         type="date"
