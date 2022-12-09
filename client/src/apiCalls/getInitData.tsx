@@ -2,6 +2,7 @@ export default async function getInitData() {
   const urlGuest = '/api/guests';
   const urlStaff = '/api/staffs';
   const urlService = '/api/services';
+  const urlAppointments = '/api/appointments';
   const requestOptions = {
     method: 'GET'
   };
@@ -16,7 +17,10 @@ export default async function getInitData() {
     const responseService = await fetch(urlService, requestOptions);
     const dataService = await responseService.json();
 
-    return { dataGuest, dataStaff, dataService };
+    const responseAppointments = await fetch(urlAppointments, requestOptions);
+    const dataAppointments = await responseAppointments.json();
+
+    return { dataGuest, dataStaff, dataService, dataAppointments };
   } catch (err) {
     console.log(err);
   }

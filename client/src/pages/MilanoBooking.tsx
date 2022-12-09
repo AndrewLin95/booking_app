@@ -14,6 +14,7 @@ import {
 } from '../util/models';
 import { GUEST, STAFF, SERVICE } from '../util/constants';
 import getInitData from '../apiCalls/getInitData';
+import formatAppointmentTime from '../util/formatAppointmentTime';
 
 const MilanoBooking = () => {
   const [popupState, setPopupState] = useState('');
@@ -78,38 +79,44 @@ const MilanoBooking = () => {
       setGuestState(data?.dataGuest.guests);
       setStaffState(data?.dataStaff.staffs);
       setServiceState(data?.dataService.services);
+      setAppointmentState(data?.dataAppointments.appointments);
       setLoading(false);
     };
 
     pullInitData();
   }, []);
 
-  // Test API
-  const testAPI = async () => {
-    console.log('test click');
+  // // Test API
+  // const testAPI = async () => {
+  //   console.log('test click');
 
-    const data = {
-      guestName: `Paula Thompson`,
-      staffName: `Ronald Klein`,
-      startTime: 1600,
-      duration: 30,
-      serviceHeader: `Mens Haircut`,
-      date: `2022-12-08`
-    };
+  //   const data = {
+  //     guestName: `Paula Thompson`,
+  //     staffName: `Ronald Klein`,
+  //     startTime: `4:15 PM`,
+  //     duration: 30,
+  //     serviceHeader: `Mens Haircut`,
+  //     date: `2022-12-08`
+  //   };
 
-    const url = '/api/appointments';
-    const requestOptions = {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
-    };
+  //   const url = '/api/appointments';
+  //   const requestOptions = {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json'
+  //     },
+  //     body: JSON.stringify(data)
+  //   };
 
-    const response = await fetch(url, requestOptions);
-    // const data = await response.json();
+  //   const response = await fetch(url, requestOptions);
+  //   // const data = await response.json();
 
-    // console.log(data);
+  //   // console.log(data);
+  // };
+
+  // TEST Function
+  const testFunction = () => {
+    formatAppointmentTime('4:15 PM', 30);
   };
 
   // const getInitalizationData = () => {
@@ -125,7 +132,8 @@ const MilanoBooking = () => {
           updatePageStates={updatePageStates}
         />
       )}
-      <button onClick={testAPI}>TEST</button>
+      {/* <button onClick={testAPI}>api</button> */}
+      <button onClick={testFunction}>func</button>
       <Guests
         handleAddBtnClick={handleAddBtnClick}
         guestState={guestState}
@@ -141,7 +149,11 @@ const MilanoBooking = () => {
         serviceState={serviceState}
         loading={loading}
       />
-      <Appointments handleAddBtnClick={handleAddBtnClick} />
+      <Appointments
+        handleAddBtnClick={handleAddBtnClick}
+        appointmentState={appointmentState}
+        loading={loading}
+      />
     </div>
   );
 };
