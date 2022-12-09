@@ -10,6 +10,7 @@ app.use(bodyParser.json());
 const guestRouter = require('./routes/guestRoutes');
 const staffRouter = require('./routes/staffRoute');
 const serviceRouter = require('./routes/serviceRoute');
+const appointmentRoutes = require('./routes/appointmentRoutes');
 
 //Set up mongoose connection
 const mongoose = require('mongoose');
@@ -23,18 +24,7 @@ db.once("open", () => console.log("Connected to DB!"));
 app.use(guestRouter);
 app.use(staffRouter);
 app.use(serviceRouter);
-
-// const MilanoGuest = require('./models/MilanoGuest');
-
-// app.get('/api/guests', async (req, res) => {
-//   try {
-//     const guests = await MilanoGuest.find({});
-//     console.log(guests);
-//     res.status(200).json({ guests : guests});
-//   } catch (err) {
-//     this.res.status(500).send(error);
-//   }
-// })
+app.use(appointmentRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
