@@ -6,7 +6,7 @@ import {
   ServicesInterface,
   AppointmentsInterface
 } from '../../util/models';
-import { APPOINTMENT, EDITAPPOINTMENT } from '../../util/constants';
+import { EDITAPPOINTMENT } from '../../util/constants';
 
 interface Props {
   closePopup: () => void;
@@ -67,9 +67,6 @@ const EditAppointment: FC<Props> = ({
         isCancelled: false
       }
     };
-
-    console.log('EDIT DATA', data);
-
     const url = `/api/appointments`;
     const requestOptions = {
       method: 'PUT',
