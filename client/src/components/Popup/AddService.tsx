@@ -1,11 +1,21 @@
 import React, { FC } from 'react';
 import CloseIcon from '@mui/icons-material/Close';
+import {
+  GuestsInterface,
+  StaffsInterface,
+  ServicesInterface
+} from '../../util/models';
+import { SERVICE } from '../../util/constants';
 
 interface Props {
   closePopup: () => void;
+  updatePageStates: (
+    category: string,
+    data: GuestsInterface | StaffsInterface | ServicesInterface
+  ) => void;
 }
 
-const AddService: FC<Props> = ({ closePopup }) => {
+const AddService: FC<Props> = ({ closePopup, updatePageStates }) => {
   const submitToMongo = async (e: any) => {
     e.preventDefault();
 
@@ -26,6 +36,7 @@ const AddService: FC<Props> = ({ closePopup }) => {
 
     try {
       closePopup();
+      updatePageStates(SERVICE, data);
       await fetch(url, requestOptions);
     } catch (err) {
       // TODO: Error modal

@@ -33,13 +33,19 @@ const AddPopup: FC<Props> = ({ closePopup, popupState, updatePageStates }) => {
     case STAFF:
       return (
         <div className="addPopupContainer">
-          <AddStaff closePopup={closePopup} />
+          <AddStaff
+            closePopup={closePopup}
+            updatePageStates={updatePageStates}
+          />
         </div>
       );
     case SERVICE:
       return (
         <div className="addPopupContainer">
-          <AddService closePopup={closePopup} />
+          <AddService
+            closePopup={closePopup}
+            updatePageStates={updatePageStates}
+          />
         </div>
       );
     default:
