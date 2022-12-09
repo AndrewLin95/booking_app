@@ -119,6 +119,32 @@ const Appointments: FC<Props> = ({
     }
   };
 
+  // cancels an appointment
+  const cancelAppointment = async (data: AppointmentsInterface) => {
+    setReload(true);
+    const url = `/api/appointments/cancel`;
+    const requestOptions = {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    };
+    try {
+      const response = await fetch(url, requestOptions);
+      const _data = await response.json();
+      if (_data.status === 'success') {
+        updatePageStates(EDITAPPOINTMENT, data);
+        setReload(false);
+      } else {
+        return;
+      }
+    } catch (err) {
+      //TODO error response
+      console.log(err);
+    }
+  };
+
   // TODO: Loading Skeleton
   if (loading) {
     return null;
@@ -152,6 +178,7 @@ const Appointments: FC<Props> = ({
                 handleAddBtnClick={handleAddBtnClick}
                 handleEditState={handleEditState}
                 completeAppointment={completeAppointment}
+                cancelAppointment={cancelAppointment}
               />
             );
           })}

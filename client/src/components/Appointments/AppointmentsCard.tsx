@@ -17,13 +17,15 @@ interface Props {
   handleAddBtnClick: (category: string) => void;
   handleEditState: (initialState: AppointmentsInterface) => void;
   completeAppointment: (data: AppointmentsInterface) => void;
+  cancelAppointment: (data: AppointmentsInterface) => void;
 }
 
 const AppointmentsCard: FC<Props> = ({
   appointment,
   handleAddBtnClick,
   handleEditState,
-  completeAppointment
+  completeAppointment,
+  cancelAppointment
 }) => {
   const endTime = formatAppointmentTime(
     appointment.startTime,
@@ -69,7 +71,12 @@ const AppointmentsCard: FC<Props> = ({
         >
           <EditIcon />
         </button>
-        <button className="appointmentBtns">
+        <button
+          onClick={() => {
+            cancelAppointment(appointment);
+          }}
+          className="appointmentBtns"
+        >
           <CloseIcon />
         </button>
       </div>
