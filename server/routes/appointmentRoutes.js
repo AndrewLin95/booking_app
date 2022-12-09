@@ -148,4 +148,36 @@ app.put('/api/appointments/complete', async (req, res) => {
   }
 })
 
+// cancels appointments by setting isComplete to true
+app.put('/api/appointments/cancel', async (req, res) => {
+  let appointmentsObj = req.body;
+
+  const filter = {
+    date: {$eq: appointmentsObj.date}, 
+    staffName: {$eq: appointmentsObj.staffName},
+    startTime: {$eq: appointmentsObj.startTime},
+    endTime: {$eq: appointmentsObj.endTime},
+    isComplete: {$eq: false}, 
+    isCancelled: {$eq: false},
+  }
+
+  const newObj = {
+    guestName: appointmentsObj.guestName,
+    staffName: appointmentsObj.staffName,
+    startTime: appointmentsObj.startTime,
+    endTime: appointmentsObj.endTime,
+    duration: appointmentsObj.duration,
+    serviceHeader: appointmentsObj.serviceHeader,
+    date: appointmentsObj.date,
+    isComplete: appointmentsObj.isComplete,
+    isCancelled: true,
+  }
+
+  try {
+    await MilanoAppointments.findOneAndUpdate(filter, newObj, {new: true})
+    res.send({ status: "success"});
+  } catch (err) {
+    res.status(500).send(err);
+  }
+})
 module.exports = app;
