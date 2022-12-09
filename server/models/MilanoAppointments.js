@@ -29,6 +29,14 @@ const AppointmentSchema = new mongoose.Schema({
     type: String,
     required: true,
   }, 
+  isComplete: {
+    type: Boolean,
+    required: true,
+  },
+  isCancelled: {
+    type: Boolean,
+    required: true,
+  }
 }, {versionKey: false})
 
 const MilanoAppointments = mongoose.model('MilanoAppointments', AppointmentSchema);

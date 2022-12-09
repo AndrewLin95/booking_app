@@ -53,7 +53,7 @@ app.post('/api/appointments', async (req, res) => {
     } else {
       const appointments = new MilanoAppointments(appointmentsObj);
       await appointments.save();
-      res.sendStatus(200);
+      res.send({ status: "success"});
     }
   } catch (err) {
     res.status(500).send(err);
