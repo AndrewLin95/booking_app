@@ -22,9 +22,10 @@
   background-color: transparent;
   border: none;
   color: darkorange;
+  height: 2rem;
+  width: 3rem;
 }
 
 .apppointmentBtnContainer{
   display: flex;
-  gap: 10px;
 }

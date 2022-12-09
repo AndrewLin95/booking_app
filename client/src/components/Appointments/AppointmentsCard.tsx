@@ -42,12 +42,12 @@ const AppointmentsCard: FC<Props> = ({ appointment }) => {
         </div>
       </div>
       <div className="apppointmentBtnContainer">
-        <div className="appointmentBtns">
+        <button className="appointmentBtns">
           <EditIcon />
-        </div>
-        <div className="appointmentBtns">
+        </button>
+        <button className="appointmentBtns">
           <CloseIcon />
-        </div>
+        </button>
       </div>
     </div>
   );
