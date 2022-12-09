@@ -18,8 +18,13 @@
   gap: 5px;
 }
 
-.editBtn{
+.appointmentBtns{
   background-color: transparent;
   border: none;
   color: darkorange;
+}
+
+.apppointmentBtnContainer{
+  display: flex;
+  gap: 10px;
 }

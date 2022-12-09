@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import EditIcon from '@mui/icons-material/Edit';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import CloseIcon from '@mui/icons-material/Close';
 import SpaIcon from '@mui/icons-material/Spa';
 import PersonIcon from '@mui/icons-material/Person';
 import DateRangeIcon from '@mui/icons-material/DateRange';
@@ -40,8 +41,13 @@ const AppointmentsCard: FC<Props> = ({ appointment }) => {
           <PersonIcon /> {appointment.staffName}
         </div>
       </div>
-      <div className="editBtn">
-        <EditIcon />
+      <div className="apppointmentBtnContainer">
+        <div className="appointmentBtns">
+          <EditIcon />
+        </div>
+        <div className="appointmentBtns">
+          <CloseIcon />
+        </div>
       </div>
     </div>
   );
