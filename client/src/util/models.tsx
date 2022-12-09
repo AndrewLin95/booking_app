@@ -16,3 +16,12 @@ export interface ServicesInterface {
   serviceName: string;
   servicePrice: number;
 }
+
+export interface AppointmentsInterface {
+  guestName: string;
+  staffName: string;
+  startTime: string;
+  duration: string;
+  serviceHeader: string;
+  date: string;
+}

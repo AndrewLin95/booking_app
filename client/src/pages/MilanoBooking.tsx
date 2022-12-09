@@ -9,7 +9,8 @@ import './style.css';
 import {
   GuestsInterface,
   StaffsInterface,
-  ServicesInterface
+  ServicesInterface,
+  AppointmentsInterface
 } from '../util/models';
 import { GUEST, STAFF, SERVICE } from '../util/constants';
 import getInitData from '../apiCalls/getInitData';
@@ -29,6 +30,11 @@ const MilanoBooking = () => {
   const _serviceInterface = {} as ServicesInterface[];
   const [serviceState, setServiceState] =
     useState<ServicesInterface[]>(_serviceInterface);
+
+  const _appointmentInterface = {} as AppointmentsInterface[];
+  const [appointmentState, setAppointmentState] = useState<
+    AppointmentsInterface[]
+  >(_appointmentInterface);
 
   // opens popup to add entries
   const handleAddBtnClick = (category: string) => {
@@ -78,30 +84,33 @@ const MilanoBooking = () => {
     pullInitData();
   }, []);
 
-  // // Test API
-  // const testAPI = async () => {
-  //   console.log('test click');
+  // Test API
+  const testAPI = async () => {
+    console.log('test click');
 
-  //   const data = {
-  //     serviceHeader: 'Color',
-  //     serviceName: 'Color',
-  //     servicePrice: 40
-  //   };
+    const data = {
+      guestName: `Paula Thompson`,
+      staffName: `Ronald Klein`,
+      startTime: 1600,
+      duration: 30,
+      serviceHeader: `Mens Haircut`,
+      date: `2022-12-08`
+    };
 
-  //   const url = '/api/services';
-  //   const requestOptions = {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json'
-  //     },
-  //     body: JSON.stringify(data)
-  //   };
+    const url = '/api/appointments';
+    const requestOptions = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    };
 
-  //   const response = await fetch(url, requestOptions);
-  //   // const data = await response.json();
+    const response = await fetch(url, requestOptions);
+    // const data = await response.json();
 
-  //   // console.log(data);
-  // };
+    // console.log(data);
+  };
 
   // const getInitalizationData = () => {
   //   // call to mongo to add guest to DB
@@ -116,7 +125,7 @@ const MilanoBooking = () => {
           updatePageStates={updatePageStates}
         />
       )}
-      {/* <button onClick={testAPI}>TEST</button> */}
+      <button onClick={testAPI}>TEST</button>
       <Guests
         handleAddBtnClick={handleAddBtnClick}
         guestState={guestState}
