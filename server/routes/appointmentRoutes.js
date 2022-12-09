@@ -71,6 +71,7 @@ app.post('/api/appointments', async (req, res) => {
   }
 })
 
+// edit appointment dates
 app.put('/api/appointments', async (req, res) => {
   let appointmentsObj = req.body;
 
@@ -109,6 +110,39 @@ app.put('/api/appointments', async (req, res) => {
       await MilanoAppointments.findOneAndUpdate(filter, appointmentsObj.newData, {new: true})
       res.send({ status: "success"});
     }
+  } catch (err) {
+    res.status(500).send(err);
+  }
+})
+
+// complete appointments by setting isComplete to true
+app.put('/api/appointments/complete', async (req, res) => {
+  let appointmentsObj = req.body;
+
+  const filter = {
+    date: {$eq: appointmentsObj.date}, 
+    staffName: {$eq: appointmentsObj.staffName},
+    startTime: {$eq: appointmentsObj.startTime},
+    endTime: {$eq: appointmentsObj.endTime},
+    isComplete: {$eq: false}, 
+    isCancelled: {$eq: false},
+  }
+
+  const newObj = {
+    guestName: appointmentsObj.guestName,
+    staffName: appointmentsObj.staffName,
+    startTime: appointmentsObj.startTime,
+    endTime: appointmentsObj.endTime,
+    duration: appointmentsObj.duration,
+    serviceHeader: appointmentsObj.serviceHeader,
+    date: appointmentsObj.date,
+    isComplete: true,
+    isCancelled: appointmentsObj.isCancelled,
+  }
+
+  try {
+    await MilanoAppointments.findOneAndUpdate(filter, newObj, {new: true})
+    res.send({ status: "success"});
   } catch (err) {
     res.status(500).send(err);
   }
