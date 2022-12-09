@@ -43,11 +43,13 @@ const AddAppointment: FC<Props> = ({
       startTime = parseInt(`${tempArray[0]}${tempArray[2]}${tempArray[3]}`);
     }
 
+    const endTime: number = startTime + parseInt(e.target.duration.value);
+
     const data = {
       guestName: e.target.guestName.value,
       staffName: e.target.staffName.value,
       startTime: startTime,
-      endTime: startTime + e.target.duration.value,
+      endTime: endTime,
       duration: e.target.duration.value,
       serviceHeader: e.target.serviceHeader.value,
       date: e.target.date.value
