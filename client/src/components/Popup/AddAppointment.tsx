@@ -77,7 +77,7 @@ const AddAppointment: FC<Props> = ({
   return (
     <div className="addInfoContainer">
       <div className="formHeader">
-        <div>Add Guests</div>
+        <div>Add Appointments</div>
         <button className="closeBtn" onClick={() => closePopup()}>
           <CloseIcon />
         </button>
