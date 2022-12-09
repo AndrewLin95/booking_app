@@ -28,7 +28,7 @@ const formatAppointmentEndTime = (start: string, duration: number) => {
     amPM = 'AM';
   }
 
-  const endTime = `${startArray[0]}:${startArray[1]} ${amPM}`;
+  const endTime = `${startArray[0]}:${startArray[1]}${amPM}`;
 
   return endTime;
 };

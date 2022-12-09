@@ -12,7 +12,7 @@ const formatAppointmentStartTime = (start: string) => {
     amPM = 'AM';
   }
 
-  const startTime = `${startArray[0]}:${startArray[1]} ${amPM}`;
+  const startTime = `${startArray[0]}:${startArray[1]}${amPM}`;
 
   return startTime;
 };
