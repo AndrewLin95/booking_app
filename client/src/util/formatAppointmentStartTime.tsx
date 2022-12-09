@@ -1,6 +1,17 @@
-const formatAppointmentStartTime = (start: string) => {
+const formatAppointmentStartTime = (start: number) => {
   // array of [hour, minute]
-  const startArray = start.split(':');
+  const tempArray = start.toString().split('');
+
+  let startArray;
+  if (tempArray.length === 4) {
+    startArray = [
+      `${tempArray[0]}${tempArray[1]}`,
+      `${tempArray[2]}${tempArray[3]}`
+    ];
+  } else {
+    startArray = [`${tempArray[0]}`, `${tempArray[1]}${tempArray[2]}`];
+  }
+
   let formattedStartTime;
   let amPM;
 

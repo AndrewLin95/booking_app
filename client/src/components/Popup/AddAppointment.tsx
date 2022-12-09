@@ -32,11 +32,21 @@ const AddAppointment: FC<Props> = ({
 }) => {
   const submitToMongo = async (e: any) => {
     e.preventDefault();
+    const initialTime = e.target.startTime.value;
+    const tempArray = initialTime.split('');
+    let startTime;
+    if (tempArray.length === 5) {
+      startTime = parseInt(
+        `${tempArray[0]}${tempArray[1]}${tempArray[3]}${tempArray[4]}`
+      );
+    } else {
+      startTime = parseInt(`${tempArray[0]}${tempArray[2]}${tempArray[3]}`);
+    }
 
     const data = {
       guestName: e.target.guestName.value,
       staffName: e.target.staffName.value,
-      startTime: e.target.startTime.value,
+      startTime: startTime,
       duration: e.target.duration.value,
       serviceHeader: e.target.serviceHeader.value,
       date: e.target.date.value

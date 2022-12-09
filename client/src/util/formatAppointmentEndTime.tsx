@@ -1,8 +1,18 @@
-const formatAppointmentEndTime = (start: string, duration: number) => {
+const formatAppointmentEndTime = (start: number, duration: number) => {
   // assumes your appointment cannot be overnight to the next day
 
   // array of [hour, minute]
-  const startArray = start.split(':');
+  const tempArray = start.toString().split('');
+
+  let startArray;
+  if (tempArray.length === 4) {
+    startArray = [
+      `${tempArray[0]}${tempArray[1]}`,
+      `${tempArray[2]}${tempArray[3]}`
+    ];
+  } else {
+    startArray = [`${tempArray[0]}`, `${tempArray[1]}${tempArray[2]}`];
+  }
 
   // converts duration to hours and minutes
   const durationToHours = Math.floor(duration / 60);

@@ -20,7 +20,7 @@ export interface ServicesInterface {
 export interface AppointmentsInterface {
   guestName: string;
   staffName: string;
-  startTime: string;
+  startTime: number;
   duration: number;
   serviceHeader: string;
   date: string;
