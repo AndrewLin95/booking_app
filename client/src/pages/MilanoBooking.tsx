@@ -10,6 +10,7 @@ import {
   StaffsInterface,
   ServicesInterface
 } from '../util/models';
+import { GUEST, STAFF, SERVICE } from '../util/constants';
 import getInitData from '../apiCalls/getInitData';
 
 const MilanoBooking = () => {
@@ -17,16 +18,16 @@ const MilanoBooking = () => {
   const [showPopup, setShowPopup] = useState(false);
   const [loading, setLoading] = useState(true);
 
-  const _guestState = {} as GuestsInterface;
-  const [guestState, setGuestState] = useState<GuestsInterface>(_guestState);
+  const _guestState = {} as GuestsInterface[];
+  const [guestState, setGuestState] = useState<GuestsInterface[]>(_guestState);
 
-  const _staffInterface = {} as StaffsInterface;
+  const _staffInterface = {} as StaffsInterface[];
   const [staffState, setStaffState] =
-    useState<StaffsInterface>(_staffInterface);
+    useState<StaffsInterface[]>(_staffInterface);
 
-  const _serviceInterface = {} as ServicesInterface;
+  const _serviceInterface = {} as ServicesInterface[];
   const [serviceState, setServiceState] =
-    useState<ServicesInterface>(_serviceInterface);
+    useState<ServicesInterface[]>(_serviceInterface);
 
   const handleAddBtnClick = (category: string) => {
     setPopupState(category);
@@ -35,6 +36,29 @@ const MilanoBooking = () => {
 
   const closePopup = () => {
     setShowPopup(false);
+  };
+
+  // instead of fetching from server, pulls data and updates state directly.
+  // to consider: if it is being used by multiple people, fetching from server will help with syncing issues
+  const updatePageStates = (
+    category: string,
+    data: GuestsInterface | StaffsInterface | ServicesInterface
+  ) => {
+    if (category === GUEST) {
+      const tempArray: any[] = [...guestState];
+      tempArray.push(data);
+      setGuestState(tempArray);
+    } else if (category === STAFF) {
+      const tempArray: any[] = [...staffState];
+      tempArray.push(data);
+      setStaffState(tempArray);
+    } else if (category === SERVICE) {
+      const tempArray: any[] = [...serviceState];
+      tempArray.push(data);
+      setServiceState(tempArray);
+    } else {
+      console.log('unknown category');
+    }
   };
 
   // on mount, retrieve initial data
@@ -88,7 +112,11 @@ const MilanoBooking = () => {
   return (
     <div className="milanoBookingMain">
       {showPopup && (
-        <AddPopup closePopup={closePopup} popupState={popupState} />
+        <AddPopup
+          closePopup={closePopup}
+          popupState={popupState}
+          updatePageStates={updatePageStates}
+        />
       )}
       {/* <button onClick={testAPI}>TEST</button> */}
       <Guests

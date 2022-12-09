@@ -6,7 +6,7 @@ import AddIcon from '@mui/icons-material/Add';
 
 interface Props {
   handleAddBtnClick: (category: string) => void;
-  guestState: GuestsInterface;
+  guestState: GuestsInterface[];
   loading: boolean;
 }
 
