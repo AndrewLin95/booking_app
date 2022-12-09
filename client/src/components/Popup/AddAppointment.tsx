@@ -52,7 +52,9 @@ const AddAppointment: FC<Props> = ({
       endTime: endTime,
       duration: e.target.duration.value,
       serviceHeader: e.target.serviceHeader.value,
-      date: e.target.date.value
+      date: e.target.date.value,
+      isComplete: false,
+      isCancelled: false
     };
 
     const url = '/api/appointments';

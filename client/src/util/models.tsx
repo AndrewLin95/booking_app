@@ -25,4 +25,6 @@ export interface AppointmentsInterface {
   duration: number;
   serviceHeader: string;
   date: string;
+  isComplete: boolean;
+  isCancelled: boolean;
 }
