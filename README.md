@@ -22,6 +22,18 @@
 3. cd into client and run
    > npm run start
 
+### Features:
+
+1. Ability to create Guest and Staff Profiles and Service Profiles
+2. Ability to create Appointments by pulling in information from Guests, Staffs and Services.
+3. Ability to modify Appointments (Edit, Cancel, Complete)
+4. Ability to filter the appointments by:
+   1. All Dates
+   2. Specific Dates
+   3. Completed Appointments
+   4. Cancelled Appointments
+5. Prevents double-booking staffs. Once an appointment is cancelled or completed, the staff can be re-booked.
+
 ### Areas to Improve
 
 1. Move API calls into a separate folder and import where it is required
@@ -32,4 +44,6 @@
 
 4. Add roles to give staff permissions to certain services
 
-5. Add validation to allow for "working hours" to be booked
+5. Add validation to allow for "working hours" to be booked.
+
+6. Add validation to prevent booking before the current date
