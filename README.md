@@ -34,6 +34,11 @@
    4. Cancelled Appointments
 5. Prevents double-booking staffs. Once an appointment is cancelled or completed, the staff can be re-booked.
 
+### Database:
+
+- The database is separated into four different collections, one for each category (Guests, Staffs, Services, Appointments)
+- The Appointments schema is: ![Alt](https://cdn.discordapp.com/attachments/746933047760519202/1050854308725407854/image.png)
+
 ### Areas to Improve
 
 1. Move API calls into a separate folder and import where it is required
