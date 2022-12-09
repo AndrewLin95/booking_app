@@ -38,6 +38,8 @@
 
 - The database is separated into four different collections, one for each category (Guests, Staffs, Services, Appointments)
 - The Appointments schema is: ![Alt](https://cdn.discordapp.com/attachments/746933047760519202/1050854308725407854/image.png)
+- Flags for complete and cancelled are used. Allows data to be kept and filtered out as required.
+- The other schemas are relatively simple. Here is an example of the Guest Schema: ![Alt](https://cdn.discordapp.com/attachments/746933047760519202/1050854994590584832/image.png)
 
 ### Areas to Improve
 
