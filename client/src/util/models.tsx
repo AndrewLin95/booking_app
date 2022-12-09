@@ -21,6 +21,7 @@ export interface AppointmentsInterface {
   guestName: string;
   staffName: string;
   startTime: number;
+  endTime: number;
   duration: number;
   serviceHeader: string;
   date: string;

@@ -47,6 +47,7 @@ const AddAppointment: FC<Props> = ({
       guestName: e.target.guestName.value,
       staffName: e.target.staffName.value,
       startTime: startTime,
+      endTime: startTime + e.target.duration.value,
       duration: e.target.duration.value,
       serviceHeader: e.target.serviceHeader.value,
       date: e.target.date.value
