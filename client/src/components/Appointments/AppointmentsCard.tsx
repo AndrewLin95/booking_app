@@ -3,6 +3,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import SpaIcon from '@mui/icons-material/Spa';
 import PersonIcon from '@mui/icons-material/Person';
+import DateRangeIcon from '@mui/icons-material/DateRange';
 import { AppointmentsInterface } from '../../util/models';
 import './style.css';
 import formatAppointmentTime from '../../util/formatAppointmentEndTime';
@@ -19,9 +20,6 @@ const AppointmentsCard: FC<Props> = ({ appointment }) => {
   );
   const startTime = formatAppointmentStartTime(appointment.startTime);
 
-  // const startTime = 0;
-  // const endTime = 123;
-
   return (
     <div className="cardContainerAppointment">
       <div className="cardContentAppointment">
@@ -29,6 +27,10 @@ const AppointmentsCard: FC<Props> = ({ appointment }) => {
         <div className="cardDescription">
           <AccessTimeIcon />
           {startTime} - {endTime}
+        </div>
+        <div className="cardDescription">
+          <DateRangeIcon />
+          {appointment.date}
         </div>
         <div className="cardDescription">
           <SpaIcon />
