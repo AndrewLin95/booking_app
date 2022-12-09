@@ -71,4 +71,47 @@ app.post('/api/appointments', async (req, res) => {
   }
 })
 
+app.put('/api/appointments', async (req, res) => {
+  let appointmentsObj = req.body;
+
+  const newTimeRangeLow = appointmentsObj.newData.startTime
+  const newTimeRangeHigh = appointmentsObj.newData.endTime
+
+  const filter = {
+    date: {$eq: appointmentsObj.inputData.date}, 
+    staffName: {$eq: appointmentsObj.inputData.staffName},
+    startTime: {$eq: appointmentsObj.inputData.startTime},
+    endTime: {$eq: appointmentsObj.inputData.endTime},
+    isComplete: {$eq: false}, 
+    isCancelled: {$eq: false},
+  }
+
+  try {
+    // check if new time and staff is available
+    const timeCheck = await MilanoAppointments.find({
+      date: {$eq: appointmentsObj.newData.date}, 
+      staffName: {$eq: appointmentsObj.newData.staffName},
+      isComplete: {$eq: false}, 
+      isCancelled: {$eq: false},
+      $or: [{
+        startTime: {$lte: newTimeRangeLow}, endTime: {$gte: newTimeRangeLow}
+      },{
+        startTime: {$lte: newTimeRangeHigh}, endTime: {$gte: newTimeRangeHigh}
+      }] 
+    })
+
+    if (Object.keys(timeCheck).length != 0) {
+      console.log('error, duplicate time');
+      res.sendStatus(400);
+      return;
+    } else {
+      // now we can update data
+      await MilanoAppointments.findOneAndUpdate(filter, appointmentsObj.newData, {new: true})
+      res.send({ status: "success"});
+    }
+  } catch (err) {
+    res.status(500).send(err);
+  }
+})
+
 module.exports = app;
