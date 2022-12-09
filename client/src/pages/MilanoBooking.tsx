@@ -76,10 +76,6 @@ const MilanoBooking = () => {
     pullInitData();
   }, []);
 
-  useEffect(() => {
-    console.log(staffState);
-  }, [staffState]);
-
   // // Test API
   // const testAPI = async () => {
   //   console.log('test click');
