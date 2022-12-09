@@ -83,7 +83,6 @@ const Appointments: FC<Props> = ({
     return null;
   }
 
-  console.log(appointmentState);
   return (
     <div className="appointmentsContainer">
       <div className="cardHeaderContainer">

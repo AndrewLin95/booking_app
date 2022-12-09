@@ -85,14 +85,6 @@ const MilanoBooking = () => {
     }
   };
 
-  const deletePageStates = () => {
-    const tempArray = appointmentState.splice(
-      appointmentState.indexOf(editInitialState),
-      1
-    );
-    setAppointmentState([...tempArray]);
-  };
-
   // passes initial state for what is being editted
   const _editInitalStateInterface = {} as AppointmentsInterface;
   const [editInitialState, setEditInitialState] =
@@ -101,10 +93,6 @@ const MilanoBooking = () => {
   const handleEditState = (initialState: AppointmentsInterface) => {
     setEditInitialState(initialState);
   };
-
-  useEffect(() => {
-    console.log('here', editInitialState);
-  }, [editInitialState]);
 
   // on mount, retrieve initial data
   useEffect(() => {
@@ -133,7 +121,6 @@ const MilanoBooking = () => {
           staffState={staffState}
           serviceState={serviceState}
           editInitialState={editInitialState}
-          deletePageStates={deletePageStates}
         />
       )}
       <Guests

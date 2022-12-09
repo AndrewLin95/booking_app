@@ -34,7 +34,6 @@ interface Props {
   staffState: StaffsInterface[];
   serviceState: ServicesInterface[];
   editInitialState: AppointmentsInterface;
-  deletePageStates: () => void;
 }
 
 const AddPopup: FC<Props> = ({
@@ -44,8 +43,7 @@ const AddPopup: FC<Props> = ({
   guestState,
   staffState,
   serviceState,
-  editInitialState,
-  deletePageStates
+  editInitialState
 }) => {
   switch (popupState) {
     case GUEST:
@@ -97,7 +95,6 @@ const AddPopup: FC<Props> = ({
             staffState={staffState}
             serviceState={serviceState}
             editInitialState={editInitialState}
-            deletePageStates={deletePageStates}
           />
         </div>
       );

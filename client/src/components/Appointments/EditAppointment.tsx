@@ -22,7 +22,6 @@ interface Props {
   staffState: StaffsInterface[];
   serviceState: ServicesInterface[];
   editInitialState: AppointmentsInterface;
-  deletePageStates: () => void;
 }
 
 const EditAppointment: FC<Props> = ({
@@ -31,8 +30,7 @@ const EditAppointment: FC<Props> = ({
   guestState,
   staffState,
   serviceState,
-  editInitialState,
-  deletePageStates
+  editInitialState
 }) => {
   // edit appointment details
   const handleEditAppointment = async (e: any) => {
