@@ -4,16 +4,16 @@ const bodyParser = require("body-parser");
 const app = express();
 app.use(bodyParser.json());
 
-// // retrieve guest information
-// app.get('/api/appointments', async (req, res) => {
-//   try {
-//     // add search by dates
-//     const appointments = await MilanoAppointments.find({});
-//     res.status(200).json({ appointments : appointments});
-//   } catch (err) {
-//     res.status(500).send(err);
-//   }
-// })
+// retrieve guest information
+app.get('/api/appointments', async (req, res) => {
+  try {
+    // add search by dates
+    const appointments = await MilanoAppointments.find({});
+    res.status(200).json({ appointments : appointments});
+  } catch (err) {
+    res.status(500).send(err);
+  }
+})
 
 app.post('/api/appointments', async (req, res) => {
   let appointmentsObj = req.body;
