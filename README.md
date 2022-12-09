@@ -8,6 +8,7 @@
 
 ##### Back-End
 
+- Javascript
 - NodeJs
 - MongoDB
 
@@ -54,3 +55,5 @@
 5. Add validation to allow for "working hours" to be booked.
 
 6. Add validation to prevent booking before the current date
+
+7. Typescript Backend
