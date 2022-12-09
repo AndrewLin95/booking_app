@@ -25,12 +25,34 @@ app.get('/api/appointments/:date', async (req, res) => {
   }
 })
 
+// add appointment date
 app.post('/api/appointments', async (req, res) => {
   let appointmentsObj = req.body;
+
   try {
-    const appointments = new MilanoAppointments(appointmentsObj);
-    await appointments.save();
-    res.sendStatus(200);
+    const incomingTimeRangeLow = appointmentsObj.startTime 
+    const incomingTimeRangeHigh = appointmentsObj.startTime + appointmentsObj.duration
+
+    // 1) query mongoDB to see if there is an existing entry with the same time, date and staff
+    const timeCheck = await MilanoAppointments.find(
+      {$and: [
+        {startTime: {$gte: incomingTimeRangeLow, $lte: incomingTimeRangeHigh}}, 
+        {endTime: {$lte: incomingTimeRangeLow, $gte: incomingTimeRangeHigh}},
+        {date : {$eq: appointmentsObj.date}},
+        {staffName: {$eq: appointmentsObj.staffName}}
+      ]})
+    
+    console.log(timeCheck);
+    // 2) determine if that entry has the same staff as the req object
+    if (Object.keys(timeCheck).length === 0) {
+      console.log('error, LOOK HERE');
+      res.sendStatus(400);
+      return;
+    } else {
+      const appointments = new MilanoAppointments(appointmentsObj);
+      await appointments.save();
+      res.sendStatus(200);
+    }
   } catch (err) {
     res.status(500).send(err);
   }
