@@ -1,0 +1,19 @@
+.cardContainerAppointment{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border: solid 1px rgba(255,255,255, 0.4);
+  padding: 5px;
+}
+
+.cardContentAppointment{
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.editBtn{
+  background-color: transparent;
+  border: none;
+  color: darkorange;
+}

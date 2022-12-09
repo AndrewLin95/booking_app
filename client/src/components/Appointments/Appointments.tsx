@@ -1,7 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { FC, useState, useEffect } from 'react';
 import retrieveTodayDate from '../../util/retrieveTodayDate';
+import AppointmentsCard from './AppointmentsCard';
+import AddIcon from '@mui/icons-material/Add';
+import { APPOINTMENT } from '../../util/constants';
+interface Props {
+  handleAddBtnClick: (category: string) => void;
+}
 
-const Appointments = () => {
+const Appointments: FC<Props> = ({ handleAddBtnClick }) => {
   const [date, setDate] = useState('');
 
   useEffect(() => {
@@ -25,7 +31,17 @@ const Appointments = () => {
           handleDateChange(e);
         }}
       />
-      date Selectors
+      <div className="cardMainContainer">
+        <AppointmentsCard />
+      </div>
+      <div className="addBtnContainer">
+        <button
+          className="addBtn"
+          onClick={() => handleAddBtnClick(APPOINTMENT)}
+        >
+          <AddIcon fontSize="large" />
+        </button>
+      </div>
     </div>
   );
 };

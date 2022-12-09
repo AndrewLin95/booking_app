@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState, useEffect } from 'react';
 import Appointments from '../components/Appointments/Appointments';
 import Guests from '../components/Guests/Guests';
@@ -29,6 +30,7 @@ const MilanoBooking = () => {
   const [serviceState, setServiceState] =
     useState<ServicesInterface[]>(_serviceInterface);
 
+  // opens popup to add entries
   const handleAddBtnClick = (category: string) => {
     setPopupState(category);
     setShowPopup(true);
@@ -130,7 +132,7 @@ const MilanoBooking = () => {
         serviceState={serviceState}
         loading={loading}
       />
-      <Appointments />
+      <Appointments handleAddBtnClick={handleAddBtnClick} />
     </div>
   );
 };
