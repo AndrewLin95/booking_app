@@ -2,24 +2,40 @@ import React, { FC } from 'react';
 import AddGuest from './AddGuest';
 import AddStaff from './AddStaff';
 import AddService from './AddService';
-import { GUEST, STAFF, SERVICE } from '../../util/constants';
+import { GUEST, STAFF, SERVICE, APPOINTMENT } from '../../util/constants';
 import {
   GuestsInterface,
   StaffsInterface,
-  ServicesInterface
+  ServicesInterface,
+  AppointmentsInterface
 } from '../../util/models';
 import './style.css';
+import AddAppointment from './AddAppointment';
 
 interface Props {
   closePopup: () => void;
   popupState: string;
   updatePageStates: (
     category: string,
-    data: GuestsInterface | StaffsInterface | ServicesInterface
+    data:
+      | GuestsInterface
+      | StaffsInterface
+      | ServicesInterface
+      | AppointmentsInterface
   ) => void;
+  guestState: GuestsInterface[];
+  staffState: StaffsInterface[];
+  serviceState: ServicesInterface[];
 }
 
-const AddPopup: FC<Props> = ({ closePopup, popupState, updatePageStates }) => {
+const AddPopup: FC<Props> = ({
+  closePopup,
+  popupState,
+  updatePageStates,
+  guestState,
+  staffState,
+  serviceState
+}) => {
   switch (popupState) {
     case GUEST:
       return (
@@ -45,6 +61,18 @@ const AddPopup: FC<Props> = ({ closePopup, popupState, updatePageStates }) => {
           <AddService
             closePopup={closePopup}
             updatePageStates={updatePageStates}
+          />
+        </div>
+      );
+    case APPOINTMENT:
+      return (
+        <div className="addPopupContainer">
+          <AddAppointment
+            closePopup={closePopup}
+            updatePageStates={updatePageStates}
+            guestState={guestState}
+            staffState={staffState}
+            serviceState={serviceState}
           />
         </div>
       );

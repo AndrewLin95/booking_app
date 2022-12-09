@@ -12,9 +12,8 @@ import {
   ServicesInterface,
   AppointmentsInterface
 } from '../util/models';
-import { GUEST, STAFF, SERVICE } from '../util/constants';
+import { GUEST, STAFF, SERVICE, APPOINTMENT } from '../util/constants';
 import getInitData from '../apiCalls/getInitData';
-import formatAppointmentTime from '../util/formatAppointmentTime';
 
 const MilanoBooking = () => {
   const [popupState, setPopupState] = useState('');
@@ -51,7 +50,11 @@ const MilanoBooking = () => {
   // to consider: if it is being used by multiple people, fetching from server will help with syncing issues
   const updatePageStates = (
     category: string,
-    data: GuestsInterface | StaffsInterface | ServicesInterface
+    data:
+      | GuestsInterface
+      | StaffsInterface
+      | ServicesInterface
+      | AppointmentsInterface
   ) => {
     if (category === GUEST) {
       const tempArray: any[] = [...guestState];
@@ -65,6 +68,10 @@ const MilanoBooking = () => {
       const tempArray: any[] = [...serviceState];
       tempArray.push(data);
       setServiceState(tempArray);
+    } else if (category === APPOINTMENT) {
+      const tempArray: any[] = [...appointmentState];
+      tempArray.push(data);
+      setAppointmentState(tempArray);
     } else {
       console.log('unknown category');
     }
@@ -91,11 +98,11 @@ const MilanoBooking = () => {
   //   console.log('test click');
 
   //   const data = {
-  //     guestName: `Paula Thompson`,
+  //     guestName: `Susan Carlson`,
   //     staffName: `Ronald Klein`,
-  //     startTime: `4:15 PM`,
-  //     duration: 30,
-  //     serviceHeader: `Mens Haircut`,
+  //     startTime: `6:15 PM`,
+  //     duration: 45,
+  //     serviceHeader: `Color`,
   //     date: `2022-12-08`
   //   };
 
@@ -114,10 +121,10 @@ const MilanoBooking = () => {
   //   // console.log(data);
   // };
 
-  // TEST Function
-  const testFunction = () => {
-    formatAppointmentTime('4:15 PM', 30);
-  };
+  // // TEST Function
+  // const testFunction = () => {
+  //   formatAppointmentTime('4:15 PM', 30);
+  // };
 
   // const getInitalizationData = () => {
   //   // call to mongo to add guest to DB
@@ -130,10 +137,13 @@ const MilanoBooking = () => {
           closePopup={closePopup}
           popupState={popupState}
           updatePageStates={updatePageStates}
+          guestState={guestState}
+          staffState={staffState}
+          serviceState={serviceState}
         />
       )}
       {/* <button onClick={testAPI}>api</button> */}
-      <button onClick={testFunction}>func</button>
+      {/* <button onClick={testFunction}>func</button> */}
       <Guests
         handleAddBtnClick={handleAddBtnClick}
         guestState={guestState}

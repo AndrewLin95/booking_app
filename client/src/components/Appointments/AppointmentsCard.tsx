@@ -5,7 +5,8 @@ import SpaIcon from '@mui/icons-material/Spa';
 import PersonIcon from '@mui/icons-material/Person';
 import { AppointmentsInterface } from '../../util/models';
 import './style.css';
-import formatAppointmentTime from '../../util/formatAppointmentTime';
+import formatAppointmentTime from '../../util/formatAppointmentEndTime';
+import formatAppointmentStartTime from '../../util/formatAppointmentStartTime';
 
 interface Props {
   appointment: AppointmentsInterface;
@@ -16,6 +17,7 @@ const AppointmentsCard: FC<Props> = ({ appointment }) => {
     appointment.startTime,
     appointment.duration
   );
+  const startTime = formatAppointmentStartTime(appointment.startTime);
 
   return (
     <div className="cardContainerAppointment">
@@ -23,7 +25,7 @@ const AppointmentsCard: FC<Props> = ({ appointment }) => {
         <div className="cardName">{appointment.guestName}</div>
         <div className="cardDescription">
           <AccessTimeIcon />
-          {appointment.startTime} - {endTime}
+          {startTime} - {endTime}
         </div>
         <div className="cardDescription">
           <SpaIcon />
