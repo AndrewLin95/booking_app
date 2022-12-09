@@ -20,12 +20,20 @@ const formatAppointmentEndTime = (start: number, duration: number) => {
 
   // add back to original time
 
+  // hours
+  let endHour = parseInt(startArray[0]) + durationToHours;
+  startArray.splice(0, 1, endHour.toString());
+
   // minutes
   const endMinutes = parseInt(startArray[1]) + durationToMinutes;
-  startArray.splice(1, 1, endMinutes.toString());
+  if (endMinutes === 60) {
+    startArray.splice(1, 1, '00');
+    // add one to hours
+    endHour++;
+  } else {
+    startArray.splice(1, 1, endMinutes.toString());
+  }
 
-  // hours
-  const endHour = parseInt(startArray[0]) + durationToHours;
   startArray.splice(0, 1, endHour.toString());
 
   let amPM;
