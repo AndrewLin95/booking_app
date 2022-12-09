@@ -7,7 +7,10 @@ app.use(bodyParser.json());
 // retrieve all appointments
 app.get('/api/appointments', async (req, res) => {
   try {
-    const appointments = await MilanoAppointments.find({});
+    const appointments = await MilanoAppointments.find({ 
+      isComplete: {$eq: false}, 
+      isCancelled: {$eq: false},
+    });
     res.status(200).json({ appointments : appointments});
   } catch (err) {
     res.status(500).send(err);
@@ -18,12 +21,18 @@ app.get('/api/appointments', async (req, res) => {
 app.get('/api/appointments/:date', async (req, res) => {
   console.log(req.params.date);
   try {
-    const appointments = await MilanoAppointments.find({ date: req.params.date });
+    const appointments = await MilanoAppointments.find({ 
+      date: req.params.date,       
+      isComplete: {$eq: false}, 
+      isCancelled: {$eq: false}, 
+    });
     res.status(200).json({ appointments : appointments});
   } catch (err) {
     res.status(500).send(err);
   }
 })
+
+// retrieve compelted dates
 
 // add appointment date
 app.post('/api/appointments', async (req, res) => {
@@ -37,6 +46,8 @@ app.post('/api/appointments', async (req, res) => {
     const timeCheck = await MilanoAppointments.find({
       date: {$eq: appointmentsObj.date}, 
       staffName: {$eq: appointmentsObj.staffName},
+      isComplete: {$eq: false}, 
+      isCancelled: {$eq: false},
       $or: [{
         startTime: {$lte: incomingTimeRangeLow}, endTime: {$gte: incomingTimeRangeLow}
       },{
