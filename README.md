@@ -1,3 +1,5 @@
+![Alt](https://cdn.discordapp.com/attachments/746933047760519202/1050858075097141319/image.png)
+
 ### Technologies
 
 ##### Front-End
