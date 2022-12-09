@@ -34,17 +34,19 @@ app.post('/api/appointments', async (req, res) => {
     const incomingTimeRangeHigh = appointmentsObj.startTime + appointmentsObj.duration
 
     // 1) query mongoDB to see if there is an existing entry with the same time, date and staff
-    const timeCheck = await MilanoAppointments.find(
-      {$and: [
-        {startTime: {$gte: incomingTimeRangeLow, $lte: incomingTimeRangeHigh}}, 
-        {endTime: {$lte: incomingTimeRangeLow, $gte: incomingTimeRangeHigh}},
-        {date : {$eq: appointmentsObj.date}},
-        {staffName: {$eq: appointmentsObj.staffName}}
-      ]})
-    
+    const timeCheck = await MilanoAppointments.find({
+      date: {$eq: appointmentsObj.date}, 
+      staffName: {$eq: appointmentsObj.staffName},
+      $or: [{
+        startTime: {$lte: incomingTimeRangeLow}, endTime: {$gte: incomingTimeRangeLow}
+      },{
+        startTime: {$lte: incomingTimeRangeHigh}, endTime: {$gte: incomingTimeRangeHigh}
+      }] 
+    })
+
     console.log(timeCheck);
     // 2) determine if that entry has the same staff as the req object
-    if (Object.keys(timeCheck).length === 0) {
+    if (Object.keys(timeCheck).length != 0) {
       console.log('error, LOOK HERE');
       res.sendStatus(400);
       return;
