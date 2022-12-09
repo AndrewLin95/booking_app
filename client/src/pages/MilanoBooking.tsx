@@ -144,6 +144,7 @@ const MilanoBooking = () => {
         loading={loading}
         setAppointmentState={setAppointmentState}
         handleEditState={handleEditState}
+        updatePageStates={updatePageStates}
       />
     </div>
   );

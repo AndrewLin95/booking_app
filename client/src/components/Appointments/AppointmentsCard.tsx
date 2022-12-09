@@ -10,23 +10,20 @@ import { AppointmentsInterface } from '../../util/models';
 import './style.css';
 import formatAppointmentTime from '../../util/formatAppointmentEndTime';
 import formatAppointmentStartTime from '../../util/formatAppointmentStartTime';
+import CheckIcon from '@mui/icons-material/Check';
 
 interface Props {
   appointment: AppointmentsInterface;
   handleAddBtnClick: (category: string) => void;
   handleEditState: (initialState: AppointmentsInterface) => void;
-  // handleEditAppointment: (
-  //   staffName: string,
-  //   date: string,
-  //   startTime: number,
-  //   endTime: number
-  // ) => void;
+  completeAppointment: (data: AppointmentsInterface) => void;
 }
 
 const AppointmentsCard: FC<Props> = ({
   appointment,
   handleAddBtnClick,
-  handleEditState
+  handleEditState,
+  completeAppointment
 }) => {
   const endTime = formatAppointmentTime(
     appointment.startTime,
@@ -54,14 +51,22 @@ const AppointmentsCard: FC<Props> = ({
           <PersonIcon /> {appointment.staffName}
         </div>
       </div>
-      <div
-        onClick={() => {
-          handleAddBtnClick(EDITAPPOINTMENT);
-          handleEditState(appointment);
-        }}
-        className="apppointmentBtnContainer"
-      >
-        <button className="appointmentBtns">
+      <div className="apppointmentBtnContainer">
+        <button
+          onClick={() => {
+            completeAppointment(appointment);
+          }}
+          className="appointmentBtns"
+        >
+          <CheckIcon />
+        </button>
+        <button
+          onClick={() => {
+            handleAddBtnClick(EDITAPPOINTMENT);
+            handleEditState(appointment);
+          }}
+          className="appointmentBtns"
+        >
           <EditIcon />
         </button>
         <button className="appointmentBtns">

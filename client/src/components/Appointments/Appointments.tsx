@@ -3,7 +3,13 @@ import retrieveTodayDate from '../../util/retrieveTodayDate';
 import AppointmentsCard from './AppointmentsCard';
 import AddIcon from '@mui/icons-material/Add';
 import { APPOINTMENT } from '../../util/constants';
-import { AppointmentsInterface } from '../../util/models';
+import {
+  GuestsInterface,
+  StaffsInterface,
+  ServicesInterface,
+  AppointmentsInterface
+} from '../../util/models';
+import { EDITAPPOINTMENT } from '../../util/constants';
 
 interface Props {
   handleAddBtnClick: (category: string) => void;
@@ -13,6 +19,14 @@ interface Props {
     React.SetStateAction<AppointmentsInterface[]>
   >;
   handleEditState: (initialState: AppointmentsInterface) => void;
+  updatePageStates: (
+    category: string,
+    data:
+      | GuestsInterface
+      | StaffsInterface
+      | ServicesInterface
+      | AppointmentsInterface
+  ) => void;
 }
 
 const Appointments: FC<Props> = ({
@@ -20,7 +34,8 @@ const Appointments: FC<Props> = ({
   appointmentState,
   loading,
   setAppointmentState,
-  handleEditState
+  handleEditState,
+  updatePageStates
 }) => {
   const [date, setDate] = useState('');
   const [reload, setReload] = useState(false);
@@ -78,6 +93,32 @@ const Appointments: FC<Props> = ({
     }
   };
 
+  // completes an appointment
+  const completeAppointment = async (data: AppointmentsInterface) => {
+    setReload(true);
+    const url = `/api/appointments/complete`;
+    const requestOptions = {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    };
+    try {
+      const response = await fetch(url, requestOptions);
+      const _data = await response.json();
+      if (_data.status === 'success') {
+        updatePageStates(EDITAPPOINTMENT, data);
+        setReload(false);
+      } else {
+        return;
+      }
+    } catch (err) {
+      //TODO error response
+      console.log(err);
+    }
+  };
+
   // TODO: Loading Skeleton
   if (loading) {
     return null;
@@ -110,6 +151,7 @@ const Appointments: FC<Props> = ({
                 appointment={value}
                 handleAddBtnClick={handleAddBtnClick}
                 handleEditState={handleEditState}
+                completeAppointment={completeAppointment}
               />
             );
           })}

@@ -17,7 +17,7 @@ import {
 } from '../../util/models';
 import './style.css';
 import AddAppointment from './AddAppointment';
-import EditAppointment from '../Appointments/EditAppointment';
+import EditAppointment from './EditAppointment';
 
 interface Props {
   closePopup: () => void;
