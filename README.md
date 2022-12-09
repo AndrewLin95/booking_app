@@ -16,6 +16,10 @@
 
 1. create a `.env` file with a mongoURI
 
+```
+mongoAtlasUri = "mongodb+srv://<userName>:<password>@<database>.bdb2nnk.mongodb.net/?retryWrites=true&w=majority"
+```
+
 2. cd into server and run
 
    > npm run dev
