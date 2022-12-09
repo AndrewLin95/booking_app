@@ -92,7 +92,7 @@ const EditAppointment: FC<Props> = ({
   };
 
   return (
-    <div className="addInfoContainer">
+    <div className="addAppointmentContainer">
       <div className="formHeader">
         <div>Edit Appointments</div>
         <button className="closeBtn" onClick={() => closePopup()}>
@@ -105,76 +105,95 @@ const EditAppointment: FC<Props> = ({
           handleEditAppointment(e);
         }}
       >
-        <select name="guestName">
-          {Object.entries(guestState).map(([key, value]) => {
-            const fullName = `${value.firstName} ${value.lastName}`;
-            if (fullName === editInitialState.guestName) {
-              return (
-                <option key={key} value={fullName} selected>
-                  {value.firstName} {value.lastName}
-                </option>
-              );
-            } else {
-              return (
-                <option key={key} value={fullName}>
-                  {value.firstName} {value.lastName}
-                </option>
-              );
-            }
-          })}
-        </select>
+        <div className="formInputContainer">
+          <label className="formLabel">Guest Name: </label>
+          <select name="guestName" className="formItem">
+            {Object.entries(guestState).map(([key, value]) => {
+              const fullName = `${value.firstName} ${value.lastName}`;
+              if (fullName === editInitialState.guestName) {
+                return (
+                  <option key={key} value={fullName} selected>
+                    {value.firstName} {value.lastName}
+                  </option>
+                );
+              } else {
+                return (
+                  <option key={key} value={fullName}>
+                    {value.firstName} {value.lastName}
+                  </option>
+                );
+              }
+            })}
+          </select>
+        </div>
 
-        <input
-          type="date"
-          name="date"
-          defaultValue={editInitialState.date}
-        ></input>
+        <div className="formInputContainer">
+          <label className="formLabel">Time: </label>
+          <input
+            type="date"
+            name="date"
+            defaultValue={editInitialState.date}
+            className="formItem"
+          ></input>
+        </div>
 
-        <input type="time" name="startTime"></input>
+        <div className="formInputContainer">
+          <label className="formLabel">Date: </label>
+          <input type="time" name="startTime" className="formItem"></input>
+        </div>
 
-        <select name="duration">
-          <option value={15}>15</option>
-          <option value={30}>30</option>
-          <option value={45}>45</option>
-          <option value={60}>60</option>
-        </select>
+        <div className="formInputContainer">
+          <label className="formLabel">Duration: </label>
+          <select name="duration" className="formItem">
+            <option value={15}>15</option>
+            <option value={30}>30</option>
+            <option value={45}>45</option>
+            <option value={60}>60</option>
+          </select>
+        </div>
 
-        <select name="serviceHeader">
-          {Object.entries(serviceState).map(([key, value]) => {
-            if (value.serviceHeader === editInitialState.serviceHeader) {
-              return (
-                <option key={key} value={`${value.serviceHeader}`} selected>
-                  {value.serviceHeader}
-                </option>
-              );
-            } else {
-              return (
-                <option key={key} value={`${value.serviceHeader}`}>
-                  {value.serviceHeader}
-                </option>
-              );
-            }
-          })}
-        </select>
+        <div className="formInputContainer">
+          <label className="formLabel">Service: </label>
+          <select name="serviceHeader" className="formItem">
+            {Object.entries(serviceState).map(([key, value]) => {
+              if (value.serviceHeader === editInitialState.serviceHeader) {
+                return (
+                  <option key={key} value={`${value.serviceHeader}`} selected>
+                    {value.serviceHeader}
+                  </option>
+                );
+              } else {
+                return (
+                  <option key={key} value={`${value.serviceHeader}`}>
+                    {value.serviceHeader}
+                  </option>
+                );
+              }
+            })}
+          </select>
+        </div>
 
-        <select name="staffName">
-          {Object.entries(staffState).map(([key, value]) => {
-            const fullName = `${value.firstName} ${value.lastName}`;
-            if (fullName === editInitialState.staffName) {
-              return (
-                <option key={key} value={fullName} selected>
-                  {value.firstName} {value.lastName}
-                </option>
-              );
-            } else {
-              return (
-                <option key={key} value={fullName}>
-                  {value.firstName} {value.lastName}
-                </option>
-              );
-            }
-          })}
-        </select>
+        <div className="formInputContainer">
+          <label className="formLabel">Staff: </label>
+          <select name="staffName" className="formItem">
+            {Object.entries(staffState).map(([key, value]) => {
+              const fullName = `${value.firstName} ${value.lastName}`;
+              if (fullName === editInitialState.staffName) {
+                return (
+                  <option key={key} value={fullName} selected>
+                    {value.firstName} {value.lastName}
+                  </option>
+                );
+              } else {
+                return (
+                  <option key={key} value={fullName}>
+                    {value.firstName} {value.lastName}
+                  </option>
+                );
+              }
+            })}
+          </select>
+        </div>
 
         <div className="formBtnContainer">
           <button className="formBtn" type="submit">
