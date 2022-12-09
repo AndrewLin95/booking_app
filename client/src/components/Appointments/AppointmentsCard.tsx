@@ -14,6 +14,7 @@ import formatAppointmentStartTime from '../../util/formatAppointmentStartTime';
 interface Props {
   appointment: AppointmentsInterface;
   handleAddBtnClick: (category: string) => void;
+  handleEditState: (initialState: AppointmentsInterface) => void;
   // handleEditAppointment: (
   //   staffName: string,
   //   date: string,
@@ -22,7 +23,11 @@ interface Props {
   // ) => void;
 }
 
-const AppointmentsCard: FC<Props> = ({ appointment, handleAddBtnClick }) => {
+const AppointmentsCard: FC<Props> = ({
+  appointment,
+  handleAddBtnClick,
+  handleEditState
+}) => {
   const endTime = formatAppointmentTime(
     appointment.startTime,
     appointment.duration
@@ -50,7 +55,10 @@ const AppointmentsCard: FC<Props> = ({ appointment, handleAddBtnClick }) => {
         </div>
       </div>
       <div
-        onClick={() => handleAddBtnClick(EDITAPPOINTMENT)}
+        onClick={() => {
+          handleAddBtnClick(EDITAPPOINTMENT);
+          handleEditState(appointment);
+        }}
         className="apppointmentBtnContainer"
       >
         <button className="appointmentBtns">

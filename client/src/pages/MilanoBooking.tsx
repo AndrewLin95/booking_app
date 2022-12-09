@@ -11,8 +11,15 @@ import {
   ServicesInterface,
   AppointmentsInterface
 } from '../util/models';
-import { GUEST, STAFF, SERVICE, APPOINTMENT } from '../util/constants';
+import {
+  GUEST,
+  STAFF,
+  SERVICE,
+  APPOINTMENT,
+  EDITAPPOINTMENT
+} from '../util/constants';
 import getInitData from '../apiCalls/getInitData';
+import getAppointments from '../apiCalls/getAppointments';
 
 const MilanoBooking = () => {
   const [popupState, setPopupState] = useState('');
@@ -63,10 +70,41 @@ const MilanoBooking = () => {
       setServiceState([...serviceState, data as ServicesInterface]);
     } else if (category === APPOINTMENT) {
       setAppointmentState([...appointmentState, data as AppointmentsInterface]);
+    } else if (category === EDITAPPOINTMENT) {
+      const fetchAppointments = async () => {
+        try {
+          const data = await getAppointments();
+          setAppointmentState(data.appointments);
+        } catch (err) {
+          console.log(err);
+        }
+      };
+      fetchAppointments();
     } else {
       console.log('unknown category');
     }
   };
+
+  const deletePageStates = () => {
+    const tempArray = appointmentState.splice(
+      appointmentState.indexOf(editInitialState),
+      1
+    );
+    setAppointmentState([...tempArray]);
+  };
+
+  // passes initial state for what is being editted
+  const _editInitalStateInterface = {} as AppointmentsInterface;
+  const [editInitialState, setEditInitialState] =
+    useState<AppointmentsInterface>(_editInitalStateInterface);
+
+  const handleEditState = (initialState: AppointmentsInterface) => {
+    setEditInitialState(initialState);
+  };
+
+  useEffect(() => {
+    console.log('here', editInitialState);
+  }, [editInitialState]);
 
   // on mount, retrieve initial data
   useEffect(() => {
@@ -84,43 +122,6 @@ const MilanoBooking = () => {
     pullInitData();
   }, []);
 
-  // // Test API
-  // const testAPI = async () => {
-  //   console.log('test click');
-
-  //   const data = {
-  //     guestName: `Susan Carlson`,
-  //     staffName: `Ronald Klein`,
-  //     startTime: `6:15 PM`,
-  //     duration: 45,
-  //     serviceHeader: `Color`,
-  //     date: `2022-12-08`
-  //   };
-
-  //   const url = '/api/appointments';
-  //   const requestOptions = {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json'
-  //     },
-  //     body: JSON.stringify(data)
-  //   };
-
-  //   const response = await fetch(url, requestOptions);
-  //   // const data = await response.json();
-
-  //   // console.log(data);
-  // };
-
-  // // TEST Function
-  // const testFunction = () => {
-  //   formatAppointmentTime('4:15 PM', 30);
-  // };
-
-  // const getInitalizationData = () => {
-  //   // call to mongo to add guest to DB
-  // };
-
   return (
     <div className="milanoBookingMain">
       {showPopup && (
@@ -131,10 +132,10 @@ const MilanoBooking = () => {
           guestState={guestState}
           staffState={staffState}
           serviceState={serviceState}
+          editInitialState={editInitialState}
+          deletePageStates={deletePageStates}
         />
       )}
-      {/* <button onClick={testAPI}>api</button> */}
-      {/* <button onClick={testFunction}>func</button> */}
       <Guests
         handleAddBtnClick={handleAddBtnClick}
         guestState={guestState}
@@ -155,6 +156,7 @@ const MilanoBooking = () => {
         appointmentState={appointmentState}
         loading={loading}
         setAppointmentState={setAppointmentState}
+        handleEditState={handleEditState}
       />
     </div>
   );

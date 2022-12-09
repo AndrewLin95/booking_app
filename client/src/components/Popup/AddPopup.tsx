@@ -33,6 +33,8 @@ interface Props {
   guestState: GuestsInterface[];
   staffState: StaffsInterface[];
   serviceState: ServicesInterface[];
+  editInitialState: AppointmentsInterface;
+  deletePageStates: () => void;
 }
 
 const AddPopup: FC<Props> = ({
@@ -41,7 +43,9 @@ const AddPopup: FC<Props> = ({
   updatePageStates,
   guestState,
   staffState,
-  serviceState
+  serviceState,
+  editInitialState,
+  deletePageStates
 }) => {
   switch (popupState) {
     case GUEST:
@@ -86,7 +90,15 @@ const AddPopup: FC<Props> = ({
     case EDITAPPOINTMENT:
       return (
         <div className="addPopupContainer">
-          <EditAppointment />
+          <EditAppointment
+            closePopup={closePopup}
+            updatePageStates={updatePageStates}
+            guestState={guestState}
+            staffState={staffState}
+            serviceState={serviceState}
+            editInitialState={editInitialState}
+            deletePageStates={deletePageStates}
+          />
         </div>
       );
     default:

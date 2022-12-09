@@ -12,13 +12,15 @@ interface Props {
   setAppointmentState: React.Dispatch<
     React.SetStateAction<AppointmentsInterface[]>
   >;
+  handleEditState: (initialState: AppointmentsInterface) => void;
 }
 
 const Appointments: FC<Props> = ({
   handleAddBtnClick,
   appointmentState,
   loading,
-  setAppointmentState
+  setAppointmentState,
+  handleEditState
 }) => {
   const [date, setDate] = useState('');
   const [reload, setReload] = useState(false);
@@ -76,46 +78,6 @@ const Appointments: FC<Props> = ({
     }
   };
 
-  // edit appointment details
-  const handleEditAppointment = async (
-    staffName: string,
-    date: string,
-    startTime: number,
-    endTime: number
-  ) => {
-    console.log('work');
-    const data = {
-      staffName: staffName,
-      date: date,
-      startTime: startTime,
-      endTime: endTime
-    };
-
-    const url = `/api/appointments`;
-    const requestOptions = {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
-    };
-
-    try {
-      const response = await fetch(url, requestOptions);
-      const _data = await response.json();
-      if (_data.status === 'success') {
-        // refresh appointment data
-      } else {
-        return;
-      }
-    } catch (err) {
-      //TODO error response
-      console.log(err);
-    }
-
-    return;
-  };
-
   // TODO: Loading Skeleton
   if (loading) {
     return null;
@@ -148,6 +110,7 @@ const Appointments: FC<Props> = ({
                 key={key}
                 appointment={value}
                 handleAddBtnClick={handleAddBtnClick}
+                handleEditState={handleEditState}
               />
             );
           })}
