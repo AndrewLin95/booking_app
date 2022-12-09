@@ -2,7 +2,13 @@ import React, { FC } from 'react';
 import AddGuest from './AddGuest';
 import AddStaff from './AddStaff';
 import AddService from './AddService';
-import { GUEST, STAFF, SERVICE, APPOINTMENT } from '../../util/constants';
+import {
+  GUEST,
+  STAFF,
+  SERVICE,
+  APPOINTMENT,
+  EDITAPPOINTMENT
+} from '../../util/constants';
 import {
   GuestsInterface,
   StaffsInterface,
@@ -11,6 +17,7 @@ import {
 } from '../../util/models';
 import './style.css';
 import AddAppointment from './AddAppointment';
+import EditAppointment from '../Appointments/EditAppointment';
 
 interface Props {
   closePopup: () => void;
@@ -74,6 +81,12 @@ const AddPopup: FC<Props> = ({
             staffState={staffState}
             serviceState={serviceState}
           />
+        </div>
+      );
+    case EDITAPPOINTMENT:
+      return (
+        <div className="addPopupContainer">
+          <EditAppointment />
         </div>
       );
     default:

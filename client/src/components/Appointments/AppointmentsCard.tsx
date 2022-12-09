@@ -5,6 +5,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import SpaIcon from '@mui/icons-material/Spa';
 import PersonIcon from '@mui/icons-material/Person';
 import DateRangeIcon from '@mui/icons-material/DateRange';
+import { EDITAPPOINTMENT } from '../../util/constants';
 import { AppointmentsInterface } from '../../util/models';
 import './style.css';
 import formatAppointmentTime from '../../util/formatAppointmentEndTime';
@@ -12,9 +13,16 @@ import formatAppointmentStartTime from '../../util/formatAppointmentStartTime';
 
 interface Props {
   appointment: AppointmentsInterface;
+  handleAddBtnClick: (category: string) => void;
+  // handleEditAppointment: (
+  //   staffName: string,
+  //   date: string,
+  //   startTime: number,
+  //   endTime: number
+  // ) => void;
 }
 
-const AppointmentsCard: FC<Props> = ({ appointment }) => {
+const AppointmentsCard: FC<Props> = ({ appointment, handleAddBtnClick }) => {
   const endTime = formatAppointmentTime(
     appointment.startTime,
     appointment.duration
@@ -41,7 +49,10 @@ const AppointmentsCard: FC<Props> = ({ appointment }) => {
           <PersonIcon /> {appointment.staffName}
         </div>
       </div>
-      <div className="apppointmentBtnContainer">
+      <div
+        onClick={() => handleAddBtnClick(EDITAPPOINTMENT)}
+        className="apppointmentBtnContainer"
+      >
         <button className="appointmentBtns">
           <EditIcon />
         </button>
