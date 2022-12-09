@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState, useEffect } from 'react';
 import Appointments from '../components/Appointments/Appointments';
 import Guests from '../components/Guests/Guests';
@@ -57,21 +56,13 @@ const MilanoBooking = () => {
       | AppointmentsInterface
   ) => {
     if (category === GUEST) {
-      const tempArray: any[] = [...guestState];
-      tempArray.push(data);
-      setGuestState(tempArray);
+      setGuestState([...guestState, data as GuestsInterface]);
     } else if (category === STAFF) {
-      const tempArray: any[] = [...staffState];
-      tempArray.push(data);
-      setStaffState(tempArray);
+      setStaffState([...staffState, data as StaffsInterface]);
     } else if (category === SERVICE) {
-      const tempArray: any[] = [...serviceState];
-      tempArray.push(data);
-      setServiceState(tempArray);
+      setServiceState([...serviceState, data as ServicesInterface]);
     } else if (category === APPOINTMENT) {
-      const tempArray: any[] = [...appointmentState];
-      tempArray.push(data);
-      setAppointmentState(tempArray);
+      setAppointmentState([...appointmentState, data as AppointmentsInterface]);
     } else {
       console.log('unknown category');
     }
