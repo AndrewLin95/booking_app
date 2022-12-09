@@ -32,7 +32,32 @@ app.get('/api/appointments/:date', async (req, res) => {
   }
 })
 
-// retrieve compelted dates
+// retrieve all completed dates
+app.get('/api/appointments/complete', async (req, res) => {
+  try {
+    const appointments = await MilanoAppointments.find({ 
+      isComplete: {$eq: true}, 
+      isCancelled: {$eq: false},
+    });
+    res.status(200).json({ appointments : appointments});
+  } catch (err) {
+    res.status(500).send(err);
+  }
+})
+
+// retrieve all cancelled dates
+app.get('/api/appointments/cancel', async (req, res) => {
+  try {
+    const appointments = await MilanoAppointments.find({ 
+      isComplete: {$eq: false}, 
+      isCancelled: {$eq: true},
+    });
+    res.status(200).json({ appointments : appointments});
+  } catch (err) {
+    res.status(500).send(err);
+  }
+})
+
 
 // add appointment date
 app.post('/api/appointments', async (req, res) => {

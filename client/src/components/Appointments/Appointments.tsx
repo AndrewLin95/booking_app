@@ -61,7 +61,6 @@ const Appointments: FC<Props> = ({
     try {
       const response = await fetch(url, requestOptions);
       const data = await response.json();
-      console.log(data);
       setAppointmentState(data.appointments);
       setReload(false);
     } catch (err) {
@@ -84,7 +83,50 @@ const Appointments: FC<Props> = ({
     try {
       const response = await fetch(url, requestOptions);
       const data = await response.json();
-      console.log(data);
+      setAppointmentState(data.appointments);
+      setReload(false);
+    } catch (err) {
+      // TODO: Error model
+      console.log(err);
+    }
+  };
+
+  // pulls all completed appointments
+  const allCompleted = async () => {
+    setReload(true);
+    const url = `/api/appointments/complete`;
+    const requestOptions = {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    };
+
+    try {
+      const response = await fetch(url, requestOptions);
+      const data = await response.json();
+      setAppointmentState(data.appointments);
+      setReload(false);
+    } catch (err) {
+      // TODO: Error model
+      console.log(err);
+    }
+  };
+
+  // pulls all cancelled appointments
+  const allCancelled = async () => {
+    setReload(true);
+    const url = `/api/appointments/cancel`;
+    const requestOptions = {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    };
+
+    try {
+      const response = await fetch(url, requestOptions);
+      const data = await response.json();
       setAppointmentState(data.appointments);
       setReload(false);
     } catch (err) {
@@ -154,9 +196,17 @@ const Appointments: FC<Props> = ({
     <div className="appointmentsContainer">
       <div className="cardHeaderContainer">
         <div className="cardHeader">Appointments</div>
-        <button className="editBtn" onClick={removeFilter}>
-          Get All Dates
-        </button>
+        <div>
+          <button className="editBtn" onClick={removeFilter}>
+            Get All Dates
+          </button>
+          <button className="editBtn" onClick={allCompleted}>
+            Get All Completed
+          </button>
+          <button className="editBtn" onClick={allCancelled}>
+            Get All Cancelled
+          </button>
+        </div>
       </div>
 
       <div className="cardSeparator"></div>
