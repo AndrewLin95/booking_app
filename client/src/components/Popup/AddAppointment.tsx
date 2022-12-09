@@ -84,7 +84,7 @@ const AddAppointment: FC<Props> = ({
   };
 
   return (
-    <div className="addInfoContainer">
+    <div className="addAppointmentContainer">
       <div className="formHeader">
         <div>Add Appointments</div>
         <button className="closeBtn" onClick={() => closePopup()}>
@@ -97,46 +97,70 @@ const AddAppointment: FC<Props> = ({
           submitToMongo(e);
         }}
       >
-        <select name="guestName">
-          {Object.entries(guestState).map(([key, value]) => {
-            return (
-              <option key={key} value={`${value.firstName} ${value.lastName}`}>
-                {value.firstName} {value.lastName}
-              </option>
-            );
-          })}
-        </select>
+        <div className="formInputContainer">
+          <label className="formLabel">Guest Name: </label>
+          <select name="guestName" className="formItem">
+            {Object.entries(guestState).map(([key, value]) => {
+              return (
+                <option
+                  key={key}
+                  value={`${value.firstName} ${value.lastName}`}
+                >
+                  {value.firstName} {value.lastName}
+                </option>
+              );
+            })}
+          </select>
+        </div>
 
-        <input type="date" name="date"></input>
+        <div className="formInputContainer">
+          <label className="formLabel">Date: </label>
+          <input type="date" name="date" className="formItem" />
+        </div>
 
-        <input type="time" name="startTime"></input>
+        <div className="formInputContainer">
+          <label className="formLabel">Time: </label>
+          <input type="time" name="startTime" className="formItem" />
+        </div>
 
-        <select name="duration">
-          <option value={15}>15</option>
-          <option value={30}>30</option>
-          <option value={45}>45</option>
-          <option value={60}>60</option>
-        </select>
+        <div className="formInputContainer">
+          <label className="formLabel">Duration: </label>
+          <select name="duration" className="formItem">
+            <option value={15}>15</option>
+            <option value={30}>30</option>
+            <option value={45}>45</option>
+            <option value={60}>60</option>
+          </select>
+        </div>
 
-        <select name="serviceHeader">
-          {Object.entries(serviceState).map(([key, value]) => {
-            return (
-              <option key={key} value={`${value.serviceHeader}`}>
-                {value.serviceHeader}
-              </option>
-            );
-          })}
-        </select>
+        <div className="formInputContainer">
+          <label className="formLabel">Service: </label>
+          <select name="serviceHeader" className="formItem">
+            {Object.entries(serviceState).map(([key, value]) => {
+              return (
+                <option key={key} value={`${value.serviceHeader}`}>
+                  {value.serviceHeader}
+                </option>
+              );
+            })}
+          </select>
+        </div>
 
-        <select name="staffName">
-          {Object.entries(staffState).map(([key, value]) => {
-            return (
-              <option key={key} value={`${value.firstName} ${value.lastName}`}>
-                {value.firstName} {value.lastName}
-              </option>
-            );
-          })}
-        </select>
+        <div className="formInputContainer">
+          <label className="formLabel">Staff: </label>
+          <select name="staffName" className="formItem">
+            {Object.entries(staffState).map(([key, value]) => {
+              return (
+                <option
+                  key={key}
+                  value={`${value.firstName} ${value.lastName}`}
+                >
+                  {value.firstName} {value.lastName}
+                </option>
+              );
+            })}
+          </select>
+        </div>
 
         <div className="formBtnContainer">
           <button className="formBtn" type="submit">
