@@ -34,3 +34,14 @@ C:\Users\Andre\OneDrive\Desktop\Odin Project\OA\milano\serverDOTnet\obj\Debug\ne
 C:\Users\Andre\OneDrive\Desktop\Odin Project\OA\milano\serverDOTnet\obj\Debug\net7.0\serverDOTnet.pdb
 C:\Users\Andre\OneDrive\Desktop\Odin Project\OA\milano\serverDOTnet\obj\Debug\net7.0\serverDOTnet.genruntimeconfig.cache
 C:\Users\Andre\OneDrive\Desktop\Odin Project\OA\milano\serverDOTnet\obj\Debug\net7.0\ref\serverDOTnet.dll
+C:\Users\Andre\OneDrive\Desktop\Odin Project\OA\milano\serverDOTnet\bin\Debug\net7.0\DnsClient.dll
+C:\Users\Andre\OneDrive\Desktop\Odin Project\OA\milano\serverDOTnet\bin\Debug\net7.0\MongoDB.Bson.dll
+C:\Users\Andre\OneDrive\Desktop\Odin Project\OA\milano\serverDOTnet\bin\Debug\net7.0\MongoDB.Driver.dll
+C:\Users\Andre\OneDrive\Desktop\Odin Project\OA\milano\serverDOTnet\bin\Debug\net7.0\MongoDB.Driver.Core.dll
+C:\Users\Andre\OneDrive\Desktop\Odin Project\OA\milano\serverDOTnet\bin\Debug\net7.0\MongoDB.Libmongocrypt.dll
+C:\Users\Andre\OneDrive\Desktop\Odin Project\OA\milano\serverDOTnet\bin\Debug\net7.0\SharpCompress.dll
+C:\Users\Andre\OneDrive\Desktop\Odin Project\OA\milano\serverDOTnet\bin\Debug\net7.0\Snappier.dll
+C:\Users\Andre\OneDrive\Desktop\Odin Project\OA\milano\serverDOTnet\bin\Debug\net7.0\ZstdSharp.dll
+C:\Users\Andre\OneDrive\Desktop\Odin Project\OA\milano\serverDOTnet\bin\Debug\net7.0\runtimes\linux\native\libmongocrypt.so
+C:\Users\Andre\OneDrive\Desktop\Odin Project\OA\milano\serverDOTnet\bin\Debug\net7.0\runtimes\osx\native\libmongocrypt.dylib
+C:\Users\Andre\OneDrive\Desktop\Odin Project\OA\milano\serverDOTnet\bin\Debug\net7.0\runtimes\win\native\mongocrypt.dll
