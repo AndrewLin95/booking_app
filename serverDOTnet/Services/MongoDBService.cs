@@ -1,6 +1,7 @@
 using Milano_API.Models;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
+using MongoDB.Bson;
 
 namespace Milano_API.Services;
 
@@ -17,7 +18,7 @@ public class MongoDBService
 
   public async Task<List<Guests>> GetAsync()
   {
-    return await _guestsCollection.Find(_ => true).ToListAsync();
+    return await _guestsCollection.Find(new BsonDocument()).ToListAsync();
   }
 
   public async Task CreateAsync(Guests guests)

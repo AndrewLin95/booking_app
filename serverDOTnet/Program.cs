@@ -7,6 +7,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.Configure<MongoDBSettings>(
   builder.Configuration.GetSection("MilanoDatabase"));
 
+builder.Services.AddSingleton<MongoDBService>();
+
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
