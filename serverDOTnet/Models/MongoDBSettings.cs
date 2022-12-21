@@ -1,4 +1,4 @@
-namespace MongoExample.Models;
+namespace Mongo.Models;
 
 public class MongoDBSettings
 {
