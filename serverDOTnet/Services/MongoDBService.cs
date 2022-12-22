@@ -15,4 +15,15 @@ public class MongoDBService
     IMongoDatabase database = client.GetDatabase(mongoDBSettings.Value.DatabaseName);
     _guestCollection = database.GetCollection<Guests>(mongoDBSettings.Value.CollectionName);
   }
+
+  public async Task CreateAsync(Guests guests)
+  {
+    await _guestCollection.InsertOneAsync(guests);
+    return;
+  }
+
+  public async Task<List<Guests>> GetAsync()
+  {
+    return await _guestCollection.Find(new BsonDocument()).ToListAsync();
+  }
 }
