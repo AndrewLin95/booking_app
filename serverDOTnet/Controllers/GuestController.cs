@@ -28,5 +28,4 @@ public class GuestController : Controller
     await _mongoDBService.CreateAsync(guests);
     return CreatedAtAction(nameof(Get), new { id = guests.Id }, guests);
   }
-
 }
