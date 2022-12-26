@@ -7,6 +7,7 @@ namespace Mongo.Services;
 
 public class GuestsService
 {
+  // Below is readonly for this service only. It is the initialized guest collection
   private readonly IMongoCollection<Guests> _guestCollection;
 
   // Sets the correct collection for this Service to pull data from
