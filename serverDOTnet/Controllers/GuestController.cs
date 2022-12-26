@@ -7,11 +7,11 @@ namespace Mongo.Controllers;
 
 [Controller]
 [Route("api/[controller]")]
-public class GuestController : Controller
+public class GuestsController : Controller
 {
   private readonly GuestsService _guestService;
 
-  public GuestController(GuestsService guestsService)
+  public GuestsController(GuestsService guestsService)
   {
     _guestService = guestsService;
   }
