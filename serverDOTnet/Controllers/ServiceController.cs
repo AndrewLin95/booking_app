@@ -5,7 +5,7 @@ using Mongo.Services;
 namespace Mongo.Controllers;
 
 [Controller]
-[Route("api/[controller")]
+[Route("api/[controller]")]
 public class ServicesController : Controller
 {
   private readonly ServicesAppService _servicesService;
