@@ -3,14 +3,12 @@ using MongoDB.Bson.Serialization.Attributes;
 
 namespace Mongo.Models;
 
-public class Guests
+public class Staffs
 {
   [BsonId]
   [BsonRepresentation(BsonType.ObjectId)]
   public string? Id { get; set; }
-
   public string firstName { get; set; } = null!;
   public string lastName { get; set; } = null!;
-  public string phoneNumber { get; set; } = null!;
-  public string email { get; set; } = null!;
+  public string title { get; set; } = null!;
 }

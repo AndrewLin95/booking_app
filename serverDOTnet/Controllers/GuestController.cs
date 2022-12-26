@@ -9,23 +9,23 @@ namespace Mongo.Controllers;
 [Route("api/[controller]")]
 public class GuestController : Controller
 {
-  private readonly MongoDBService _mongoDBService;
+  private readonly GuestsService _guestService;
 
-  public GuestController(MongoDBService mongoDBService)
+  public GuestController(GuestsService guestsService)
   {
-    _mongoDBService = mongoDBService;
+    _guestService = guestsService;
   }
 
   [HttpGet]
   public async Task<List<Guests>> Get()
   {
-    return await _mongoDBService.GetAsync();
+    return await _guestService.GetAsync();
   }
 
   [HttpPost]
   public async Task<IActionResult> Post([FromBody] Guests guests)
   {
-    await _mongoDBService.CreateAsync(guests);
+    await _guestService.CreateAsync(guests);
     return CreatedAtAction(nameof(Get), new { id = guests.Id }, guests);
   }
 }

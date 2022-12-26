@@ -5,17 +5,18 @@ using MongoDB.Bson;
 
 namespace Mongo.Services;
 
-public class MongoDBService
+public class GuestsService
 {
   private readonly IMongoCollection<Guests> _guestCollection;
 
-  public MongoDBService(IOptions<MongoDBSettings> mongoDBSettings)
+  public GuestsService(IOptions<MongoDBSettings> guestsService)
   {
-    MongoClient client = new MongoClient(mongoDBSettings.Value.ConnectionURI);
-    IMongoDatabase database = client.GetDatabase(mongoDBSettings.Value.DatabaseName);
-    _guestCollection = database.GetCollection<Guests>(mongoDBSettings.Value.CollectionName);
+    MongoClient client = new MongoClient(guestsService.Value.ConnectionURI);
+    IMongoDatabase database = client.GetDatabase(guestsService.Value.DatabaseName);
+    _guestCollection = database.GetCollection<Guests>(guestsService.Value.CollectionName);
   }
 
+  // Guest Services
   public async Task CreateAsync(Guests guests)
   {
     await _guestCollection.InsertOneAsync(guests);
