@@ -15,7 +15,7 @@ public class GuestsService
   {
     MongoClient client = new MongoClient(guestsService.Value.ConnectionURI);
     IMongoDatabase database = client.GetDatabase(guestsService.Value.DatabaseName);
-    _guestCollection = database.GetCollection<Guests>(guestsService.Value.CollectionName);
+    _guestCollection = database.GetCollection<Guests>(guestsService.Value.GuestsCollectionName);
   }
 
   // CRUD operations on Guest Services
