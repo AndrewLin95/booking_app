@@ -7,12 +7,12 @@ namespace Mongo.Controllers;
 
 [Controller]
 [Route("api/[controller]")]
-public class GuestsController : Controller
+public class guestsController : Controller
 {
   // Dependency Injection for Guests Services into this controller. _guestServices is called to access the service
   private readonly GuestsService _guestService;
 
-  public GuestsController(GuestsService guestsService)
+  public guestsController(GuestsService guestsService)
   {
     _guestService = guestsService;
   }

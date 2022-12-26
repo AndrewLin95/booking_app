@@ -6,11 +6,11 @@ namespace Mongo.Controllers;
 
 [Controller]
 [Route("api/[controller]")]
-public class ServicesController : Controller
+public class servicesController : Controller
 {
   private readonly ServicesAppService _servicesService;
 
-  public ServicesController(ServicesAppService servicesApp)
+  public servicesController(ServicesAppService servicesApp)
   {
     _servicesService = servicesApp;
   }

@@ -6,12 +6,12 @@ namespace Mongo.Controllers;
 
 [Controller]
 [Route("api/[controller]")]
-public class StaffsController : Controller
+public class staffsController : Controller
 {
   // Dependency injection of Staff Services into controller. Pulls logic from the staff services into here.
   private readonly StaffsService _staffsService;
 
-  public StaffsController(StaffsService staffsService)
+  public staffsController(StaffsService staffsService)
   {
     _staffsService = staffsService;
   }
