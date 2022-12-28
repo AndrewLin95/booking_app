@@ -45,8 +45,35 @@ public class AppointmentsService
 
   public async Task CreateAsync(Appointments appointments)
   {
-    await _appointmentsCollection.InsertOneAsync(appointments);
-    return;
+    var builder = Builders<Appointments>.Filter;
+
+    var endTime = appointments.startTime + appointments.duration;
+
+    var lowRangeTimeFilter = builder.Lte(u => u.startTime, appointments.startTime) &
+      builder.Gte(u => u.endTime, appointments.startTime);
+
+    var highRangeTimeFilter = builder.Lte(u => u.startTime, endTime) &
+      builder.Gte(u => u.endTime, endTime);
+
+    var timeCheckFilter = builder.Eq(u => u.isCancelled, false) &
+      builder.Eq(u => u.isComplete, false) &
+      builder.Eq(u => u.date, appointments.date) &
+      builder.Eq(u => u.staffName, appointments.staffName) &
+      builder.Or(new[] { lowRangeTimeFilter, highRangeTimeFilter });
+
+    var timeCheck = await _appointmentsCollection.Find(timeCheckFilter).ToListAsync();
+
+    if (timeCheck.Count == 0)
+    {
+      await _appointmentsCollection.InsertOneAsync(appointments);
+      Console.WriteLine("new entry added");
+      return;
+    }
+    else
+    {
+      Console.WriteLine("duplicate entry, no entry added");
+      return;
+    }
   }
 
 }
