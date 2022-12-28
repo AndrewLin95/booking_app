@@ -16,9 +16,12 @@ public class AppointmentsService
     _appointmentsCollection = database.GetCollection<Appointments>(appointmentsService.Value.AppointmentsCollectionName);
   }
 
-  public async Task<List<Appointments>> GetAsync()
+  public async Task<List<Appointments>> GetAllAsync()
   {
-    return await _appointmentsCollection.Find(new BsonDocument()).ToListAsync();
+    var builder = Builders<Appointments>.Filter;
+    var filter = builder.Eq(appointments => appointments.isComplete, false) & builder.Eq(appointments => appointments.isCancelled, false);
+
+    return await _appointmentsCollection.Find(filter).ToListAsync();
   }
 
   public async Task CreateAsync(Appointments appointments)

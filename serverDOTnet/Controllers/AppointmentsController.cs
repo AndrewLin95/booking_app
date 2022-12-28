@@ -18,7 +18,7 @@ public class appointmentsController : Controller
   [HttpGet]
   public async Task<List<Appointments>> Get()
   {
-    return await _appointmentsService.GetAsync();
+    return await _appointmentsService.GetAllAsync();
   }
 
   [HttpPost]
