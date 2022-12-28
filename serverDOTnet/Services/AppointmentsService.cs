@@ -43,7 +43,7 @@ public class AppointmentsService
     return await _appointmentsCollection.Find(filter).ToListAsync();
   }
 
-  public async Task CreateAsync(Appointments appointments)
+  public async Task<string> CreateAsync(Appointments appointments)
   {
     var builder = Builders<Appointments>.Filter;
 
@@ -68,12 +68,12 @@ public class AppointmentsService
     {
       await _appointmentsCollection.InsertOneAsync(appointments);
       Console.WriteLine("new entry added");
-      return;
+      return "success";
     }
     else
     {
       Console.WriteLine("duplicate entry, no entry added");
-      return;
+      return "duplicate";
     }
   }
 

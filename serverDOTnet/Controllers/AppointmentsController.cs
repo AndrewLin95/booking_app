@@ -38,10 +38,15 @@ public class appointmentsController : Controller
 
   [HttpPost]
   [ProducesResponseType(StatusCodes.Status201Created)]
+  [ProducesResponseType(StatusCodes.Status400BadRequest)]
   public async Task<IActionResult> Post([FromBody] Appointments appointments)
   {
-    await _appointmentsService.CreateAsync(appointments);
+    var result = await _appointmentsService.CreateAsync(appointments);
+    if (result == "duplicate")
+    {
+      return BadRequest();
+    }
+
     return CreatedAtAction(nameof(Get), new { Id = appointments.id }, appointments);
   }
-
 }
