@@ -63,6 +63,7 @@ public class AppointmentsService
 
     var timeCheck = await _appointmentsCollection.Find(timeCheckFilter).ToListAsync();
 
+    // TODO: send response back to controller based on the check below
     if (timeCheck.Count == 0)
     {
       await _appointmentsCollection.InsertOneAsync(appointments);
