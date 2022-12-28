@@ -56,6 +56,7 @@ const EditAppointment: FC<Props> = ({
         endTime: editInitialState.endTime
       },
       newData: {
+        id: '',
         guestName: e.target.guestName.value,
         staffName: e.target.staffName.value,
         startTime: startTime,

@@ -20,6 +20,7 @@ const AddGuest: FC<Props> = ({ closePopup, updatePageStates }) => {
     e.preventDefault();
 
     const data = {
+      id: '',
       firstName: e.target.firstName.value,
       lastName: e.target.lastName.value,
       phoneNumber: e.target.phoneNumber.value,

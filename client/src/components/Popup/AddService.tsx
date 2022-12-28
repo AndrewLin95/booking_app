@@ -20,6 +20,7 @@ const AddService: FC<Props> = ({ closePopup, updatePageStates }) => {
     e.preventDefault();
 
     const data = {
+      id: '',
       serviceHeader: e.target.serviceHeader.value,
       serviceName: e.target.serviceName.value,
       servicePrice: e.target.servicePrice.value

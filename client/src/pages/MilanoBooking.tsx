@@ -100,10 +100,10 @@ const MilanoBooking = () => {
 
     const pullInitData = async () => {
       const data = await getInitData();
-      setGuestState(data?.dataGuest.guests);
-      setStaffState(data?.dataStaff.staffs);
-      setServiceState(data?.dataService.services);
-      setAppointmentState(data?.dataAppointments.appointments);
+      setGuestState(data?.dataGuest);
+      setStaffState(data?.dataStaff);
+      setServiceState(data?.dataService);
+      setAppointmentState(data?.dataAppointments);
       setLoading(false);
     };
 
