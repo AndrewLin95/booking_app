@@ -21,6 +21,18 @@ public class appointmentsController : Controller
     return await _appointmentsService.GetAllAsync();
   }
 
+  [HttpGet("complete")]
+  public async Task<List<Appointments>> GetComplete()
+  {
+    return await _appointmentsService.GetCompletedAsync();
+  }
+
+  [HttpGet("cancel")]
+  public async Task<List<Appointments>> GetCancelled()
+  {
+    return await _appointmentsService.GetCancelledAsync();
+  }
+
   [HttpPost]
   public async Task<IActionResult> Post([FromBody] Appointments appointments)
   {

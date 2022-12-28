@@ -16,10 +16,29 @@ public class AppointmentsService
     _appointmentsCollection = database.GetCollection<Appointments>(appointmentsService.Value.AppointmentsCollectionName);
   }
 
+  // Get all appointments that are not completed or cancelled
   public async Task<List<Appointments>> GetAllAsync()
   {
     var builder = Builders<Appointments>.Filter;
     var filter = builder.Eq(appointments => appointments.isComplete, false) & builder.Eq(appointments => appointments.isCancelled, false);
+
+    return await _appointmentsCollection.Find(filter).ToListAsync();
+  }
+
+  // Get all appointments that are completed
+  public async Task<List<Appointments>> GetCompletedAsync()
+  {
+    var builder = Builders<Appointments>.Filter;
+    var filter = builder.Eq(appointments => appointments.isComplete, true) & builder.Eq(appointments => appointments.isCancelled, false);
+
+    return await _appointmentsCollection.Find(filter).ToListAsync();
+  }
+
+  // Get all appointments that are cancelled
+  public async Task<List<Appointments>> GetCancelledAsync()
+  {
+    var builder = Builders<Appointments>.Filter;
+    var filter = builder.Eq(appointments => appointments.isComplete, false) & builder.Eq(appointments => appointments.isCancelled, true);
 
     return await _appointmentsCollection.Find(filter).ToListAsync();
   }
