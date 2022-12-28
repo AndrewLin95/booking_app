@@ -18,6 +18,7 @@ public class guestsController : Controller
   }
 
   [HttpGet]
+  [ProducesResponseType(StatusCodes.Status200OK)]
   public async Task<List<Guests>> Get()
   {
     return await _guestService.GetAsync();
@@ -25,6 +26,7 @@ public class guestsController : Controller
 
   // [FromBody] takes the value from the body
   [HttpPost]
+  [ProducesResponseType(StatusCodes.Status201Created)]
   public async Task<IActionResult> Post([FromBody] Guests guests)
   {
     // creating a new guest record using the GuestController method. Pases `guests` as a parameter

@@ -17,12 +17,14 @@ public class staffsController : Controller
   }
 
   [HttpGet]
+  [ProducesResponseType(StatusCodes.Status200OK)]
   public async Task<List<Staffs>> Get()
   {
     return await _staffsService.GetAsync();
   }
 
   [HttpPost]
+  [ProducesResponseType(StatusCodes.Status201Created)]
   public async Task<IActionResult> Post([FromBody] Staffs staffs)
   {
     await _staffsService.CreateAsync(staffs);
