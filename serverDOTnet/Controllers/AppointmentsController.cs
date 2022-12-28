@@ -16,24 +16,28 @@ public class appointmentsController : Controller
   }
 
   [HttpGet]
+  [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Appointments))]
   public async Task<List<Appointments>> Get()
   {
     return await _appointmentsService.GetAllAsync();
   }
 
   [HttpGet("complete")]
+  [ProducesResponseType(StatusCodes.Status200OK)]
   public async Task<List<Appointments>> GetComplete()
   {
     return await _appointmentsService.GetCompletedAsync();
   }
 
   [HttpGet("cancel")]
+  [ProducesResponseType(StatusCodes.Status200OK)]
   public async Task<List<Appointments>> GetCancelled()
   {
     return await _appointmentsService.GetCancelledAsync();
   }
 
   [HttpPost]
+  [ProducesResponseType(StatusCodes.Status201Created)]
   public async Task<IActionResult> Post([FromBody] Appointments appointments)
   {
     await _appointmentsService.CreateAsync(appointments);
