@@ -8,6 +8,7 @@ builder.Services.Configure<MongoDBSettings>(builder.Configuration.GetSection("Mo
 builder.Services.AddSingleton<GuestsService>();
 builder.Services.AddSingleton<StaffsService>();
 builder.Services.AddSingleton<ServicesAppService>();
+builder.Services.AddSingleton<AppointmentsService>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

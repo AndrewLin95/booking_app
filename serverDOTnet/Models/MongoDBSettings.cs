@@ -7,4 +7,5 @@ public class MongoDBSettings
   public string GuestsCollectionName { get; set; } = null!;
   public string StaffsCollectionName { get; set; } = null!;
   public string ServicesCollectionName { get; set; } = null!;
+  public string AppointmentsCollectionName { get; set; } = null!;
 }
