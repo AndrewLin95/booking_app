@@ -64,4 +64,12 @@ public class appointmentsController : Controller
     await _appointmentsService.EditAppointmentAsync(appointments);
     return CreatedAtAction(nameof(Get), new { Id = appointments.id }, appointments);
   }
+
+  [HttpPut("complete")]
+  [ProducesResponseType(StatusCodes.Status201Created)]
+  public async Task<IActionResult> PutCompleteAppointment([FromBody] Appointments appointments)
+  {
+    await _appointmentsService.CompleteAppointmentAsync(appointments);
+    return CreatedAtAction(nameof(Get), new { Id = appointments.id }, appointments);
+  }
 }

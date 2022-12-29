@@ -90,6 +90,7 @@ public class AppointmentsService
     }
   }
 
+  // Edit Appointment details
   public async Task EditAppointmentAsync(Appointments appointments)
   {
     var builder = Builders<Appointments>.Filter;
@@ -98,4 +99,16 @@ public class AppointmentsService
     await _appointmentsCollection.ReplaceOneAsync(filter, appointments);
     return;
   }
+
+  // Complete Appointment
+  public async Task CompleteAppointmentAsync(Appointments appointments)
+  {
+    var builder = Builders<Appointments>.Filter;
+    var filter = builder.Eq(u => u.id, appointments.id);
+    var update = Builders<Appointments>.Update.Set("isComplete", true);
+
+    await _appointmentsCollection.UpdateOneAsync(filter, update);
+    return;
+  }
+
 }
