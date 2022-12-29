@@ -91,14 +91,39 @@ public class AppointmentsService
   }
 
   // Edit Appointment details
-  // TODO timecheck for edit appointment
-  public async Task EditAppointmentAsync(Appointments appointments)
+  public async Task<string> EditAppointmentAsync(Appointments appointments)
   {
     var builder = Builders<Appointments>.Filter;
-    var filter = builder.Eq(u => u.id, appointments.id);
 
-    await _appointmentsCollection.ReplaceOneAsync(filter, appointments);
-    return;
+    var endTime = appointments.startTime + appointments.duration;
+
+    var lowRangeTimeFilter = builder.Lte(u => u.startTime, appointments.startTime) &
+      builder.Gte(u => u.endTime, appointments.startTime);
+
+    var highRangeTimeFilter = builder.Lte(u => u.startTime, endTime) &
+      builder.Gte(u => u.endTime, endTime);
+
+    var timeCheckFilter = builder.Eq(u => u.isCancelled, false) &
+      builder.Eq(u => u.isComplete, false) &
+      builder.Eq(u => u.date, appointments.date) &
+      builder.Eq(u => u.staffName, appointments.staffName) &
+      builder.Or(new[] { lowRangeTimeFilter, highRangeTimeFilter });
+
+    var timeCheck = await _appointmentsCollection.Find(timeCheckFilter).ToListAsync();
+
+    if (timeCheck.Count == 0)
+    {
+      var filter = builder.Eq(u => u.id, appointments.id);
+
+      await _appointmentsCollection.ReplaceOneAsync(filter, appointments);
+      Console.WriteLine("new entry added");
+      return Constants.Success;
+    }
+    else
+    {
+      Console.WriteLine("duplicate entry, no entry added");
+      return Constants.Duplicate;
+    }
   }
 
   // Complete Appointment
@@ -122,5 +147,4 @@ public class AppointmentsService
     await _appointmentsCollection.UpdateOneAsync(filter, update);
     return;
   }
-
 }

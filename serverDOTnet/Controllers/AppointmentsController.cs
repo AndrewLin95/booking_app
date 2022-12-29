@@ -61,7 +61,13 @@ public class appointmentsController : Controller
   [ProducesResponseType(StatusCodes.Status201Created)]
   public async Task<IActionResult> PutEditAppointment([FromBody] Appointments appointments)
   {
-    await _appointmentsService.EditAppointmentAsync(appointments);
+    var result = await _appointmentsService.EditAppointmentAsync(appointments);
+
+    if (result == Constants.Duplicate)
+    {
+      return BadRequest();
+    }
+
     return CreatedAtAction(nameof(Get), new { Id = appointments.id }, appointments);
   }
 
