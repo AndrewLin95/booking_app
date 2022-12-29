@@ -115,7 +115,7 @@ public class AppointmentsService
   {
     var builder = Builders<Appointments>.Filter;
     var filter = builder.Eq(u => u.id, appointments.id);
-    var update = Builders<Appointments>.Update.Set("isCancalled", true);
+    var update = Builders<Appointments>.Update.Set("isCancelled", true);
 
     await _appointmentsCollection.UpdateOneAsync(filter, update);
     return;
