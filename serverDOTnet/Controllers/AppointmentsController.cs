@@ -37,6 +37,7 @@ public class appointmentsController : Controller
   }
 
   [HttpGet("{date}")]
+  [ProducesResponseType(StatusCodes.Status200OK)]
   public async Task<List<Appointments>> GetDates(string date)
   {
     return await _appointmentsService.GetDatesAsync(date);
