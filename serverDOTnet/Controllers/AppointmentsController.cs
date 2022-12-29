@@ -56,4 +56,12 @@ public class appointmentsController : Controller
 
     return CreatedAtAction(nameof(Get), new { Id = appointments.id }, appointments);
   }
+
+  [HttpPut]
+  [ProducesResponseType(StatusCodes.Status201Created)]
+  public async Task<IActionResult> PutEditAppointment([FromBody] Appointments appointments)
+  {
+    await _appointmentsService.EditAppointmentAsync(appointments);
+    return CreatedAtAction(nameof(Get), new { Id = appointments.id }, appointments);
+  }
 }

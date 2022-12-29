@@ -89,4 +89,13 @@ public class AppointmentsService
       return Constants.Duplicate;
     }
   }
+
+  public async Task EditAppointmentAsync(Appointments appointments)
+  {
+    var builder = Builders<Appointments>.Filter;
+    var filter = builder.Eq(u => u.id, appointments.id);
+
+    await _appointmentsCollection.ReplaceOneAsync(filter, appointments);
+    return;
+  }
 }
