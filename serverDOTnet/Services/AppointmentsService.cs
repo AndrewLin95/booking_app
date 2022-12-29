@@ -46,6 +46,15 @@ public class AppointmentsService
     return await _appointmentsCollection.Find(filter).ToListAsync();
   }
 
+  // Get all appointments on a specific date
+  public async Task<List<Appointments>> GetDatesAsync(string date)
+  {
+    var builder = Builders<Appointments>.Filter;
+    var filter = builder.Eq(appointments => appointments.date, date);
+
+    return await _appointmentsCollection.Find(filter).ToListAsync();
+  }
+
   // Post new task if it does not conflict with an existing appointment
   public async Task<string> CreateAsync(Appointments appointments)
   {

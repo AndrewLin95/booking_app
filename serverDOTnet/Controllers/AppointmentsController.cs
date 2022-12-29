@@ -36,6 +36,12 @@ public class appointmentsController : Controller
     return await _appointmentsService.GetCancelledAsync();
   }
 
+  [HttpGet("{date}")]
+  public async Task<List<Appointments>> GetDates(string date)
+  {
+    return await _appointmentsService.GetDatesAsync(date);
+  }
+
   [HttpPost]
   [ProducesResponseType(StatusCodes.Status201Created)]
   [ProducesResponseType(StatusCodes.Status400BadRequest)]
