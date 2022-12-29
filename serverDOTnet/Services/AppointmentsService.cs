@@ -91,6 +91,7 @@ public class AppointmentsService
   }
 
   // Edit Appointment details
+  // TODO timecheck for edit appointment
   public async Task EditAppointmentAsync(Appointments appointments)
   {
     var builder = Builders<Appointments>.Filter;
@@ -111,6 +112,7 @@ public class AppointmentsService
     return;
   }
 
+  // Cancel Appointment
   public async Task CancelAppointmentAsync(Appointments appointments)
   {
     var builder = Builders<Appointments>.Filter;
