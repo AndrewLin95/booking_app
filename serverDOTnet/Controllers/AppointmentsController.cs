@@ -42,7 +42,7 @@ public class appointmentsController : Controller
   public async Task<IActionResult> Post([FromBody] Appointments appointments)
   {
     var result = await _appointmentsService.CreateAsync(appointments);
-    if (result == "duplicate")
+    if (result == Constants.Duplicate)
     {
       return BadRequest();
     }
