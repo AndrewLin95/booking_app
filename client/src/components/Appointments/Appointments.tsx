@@ -61,7 +61,7 @@ const Appointments: FC<Props> = ({
     try {
       const response = await fetch(url, requestOptions);
       const data = await response.json();
-      setAppointmentState(data.appointments);
+      setAppointmentState(data);
       setReload(false);
     } catch (err) {
       // TODO: Error model
@@ -83,7 +83,7 @@ const Appointments: FC<Props> = ({
     try {
       const response = await fetch(url, requestOptions);
       const data = await response.json();
-      setAppointmentState(data.appointments);
+      setAppointmentState(data);
       setReload(false);
     } catch (err) {
       // TODO: Error model
@@ -127,7 +127,7 @@ const Appointments: FC<Props> = ({
     try {
       const response = await fetch(url, requestOptions);
       const data = await response.json();
-      setAppointmentState(data.appointments);
+      setAppointmentState(data);
       setReload(false);
     } catch (err) {
       // TODO: Error model
