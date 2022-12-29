@@ -43,6 +43,7 @@ public class AppointmentsService
     return await _appointmentsCollection.Find(filter).ToListAsync();
   }
 
+  // Post new task if it does not conflict with an existing appointment
   public async Task<string> CreateAsync(Appointments appointments)
   {
     var builder = Builders<Appointments>.Filter;
