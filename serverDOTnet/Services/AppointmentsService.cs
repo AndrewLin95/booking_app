@@ -20,7 +20,8 @@ public class AppointmentsService
   public async Task<List<Appointments>> GetAllAsync()
   {
     var builder = Builders<Appointments>.Filter;
-    var filter = builder.Eq(appointments => appointments.isComplete, false) & builder.Eq(appointments => appointments.isCancelled, false);
+    var filter = builder.Eq(appointments => appointments.isComplete, false) &
+      builder.Eq(appointments => appointments.isCancelled, false);
 
     return await _appointmentsCollection.Find(filter).ToListAsync();
   }
@@ -29,7 +30,8 @@ public class AppointmentsService
   public async Task<List<Appointments>> GetCompletedAsync()
   {
     var builder = Builders<Appointments>.Filter;
-    var filter = builder.Eq(appointments => appointments.isComplete, true) & builder.Eq(appointments => appointments.isCancelled, false);
+    var filter = builder.Eq(appointments => appointments.isComplete, true) &
+      builder.Eq(appointments => appointments.isCancelled, false);
 
     return await _appointmentsCollection.Find(filter).ToListAsync();
   }
@@ -38,7 +40,8 @@ public class AppointmentsService
   public async Task<List<Appointments>> GetCancelledAsync()
   {
     var builder = Builders<Appointments>.Filter;
-    var filter = builder.Eq(appointments => appointments.isComplete, false) & builder.Eq(appointments => appointments.isCancelled, true);
+    var filter = builder.Eq(appointments => appointments.isComplete, false) &
+      builder.Eq(appointments => appointments.isCancelled, true);
 
     return await _appointmentsCollection.Find(filter).ToListAsync();
   }
