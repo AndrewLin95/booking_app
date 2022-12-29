@@ -72,12 +72,12 @@ public class AppointmentsService
     {
       await _appointmentsCollection.InsertOneAsync(appointments);
       Console.WriteLine("new entry added");
-      return "success";
+      return Constants.Success;
     }
     else
     {
       Console.WriteLine("duplicate entry, no entry added");
-      return "duplicate";
+      return Constants.Duplicate;
     }
   }
 }
