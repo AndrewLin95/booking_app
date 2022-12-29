@@ -72,4 +72,12 @@ public class appointmentsController : Controller
     await _appointmentsService.CompleteAppointmentAsync(appointments);
     return CreatedAtAction(nameof(Get), new { Id = appointments.id }, appointments);
   }
+
+  [HttpPut("cancel")]
+  [ProducesResponseType(StatusCodes.Status201Created)]
+  public async Task<IActionResult> PutCancelAppointment([FromBody] Appointments appointments)
+  {
+    await _appointmentsService.CancelAppointmentAsync(appointments);
+    return CreatedAtAction(nameof(Get), new { Id = appointments.id }, appointments);
+  }
 }
