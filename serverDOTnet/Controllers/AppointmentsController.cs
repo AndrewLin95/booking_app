@@ -59,6 +59,7 @@ public class appointmentsController : Controller
 
   [HttpPut]
   [ProducesResponseType(StatusCodes.Status201Created)]
+  [ProducesResponseType(StatusCodes.Status400BadRequest)]
   public async Task<IActionResult> PutEditAppointment([FromBody] Appointments appointments)
   {
     var result = await _appointmentsService.EditAppointmentAsync(appointments);
