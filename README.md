@@ -13,10 +13,13 @@
 - Javascript
 - NodeJs
 - MongoDB
+- C#/ASP.NET
 
 # To Run Project
 
-1. create a `.env` file with a mongoURI
+### To use NodeJs Backend
+
+1. create a `.env` file with a mongoURI in the server folder
 
 ```
 mongoAtlasUri = "mongodb+srv://<userName>:<password>@<database>.bdb2nnk.mongodb.net/?retryWrites=true&w=majority"
@@ -25,6 +28,27 @@ mongoAtlasUri = "mongodb+srv://<userName>:<password>@<database>.bdb2nnk.mongodb.
 2. cd into server and run
 
    > npm run dev
+
+### To use ASP.NET Backend
+
+1. Set secrets for MongoDB or fill in MongoDB parameters in appsettings.json
+
+```
+  "MongoDB": {
+    "ConnectionURI": "",
+    "DatabaseName": "",
+    "GuestsCollectionName": "",
+    "StaffsCollectionName": "",
+    "ServicesCollectionName": "",
+    "AppointmentsCollectionName": ""
+  },
+```
+
+2. cd into serverDOTnet and run
+
+   > dotnet run
+
+### To start React Frontend
 
 3. cd into client and run
    > npm run start

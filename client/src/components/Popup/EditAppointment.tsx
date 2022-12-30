@@ -49,24 +49,16 @@ const EditAppointment: FC<Props> = ({
     const endTime: number = startTime + parseInt(e.target.duration.value);
 
     const data = {
-      inputData: {
-        staffName: editInitialState.staffName,
-        date: editInitialState.date,
-        startTime: editInitialState.startTime,
-        endTime: editInitialState.endTime
-      },
-      newData: {
-        id: '',
-        guestName: e.target.guestName.value,
-        staffName: e.target.staffName.value,
-        startTime: startTime,
-        endTime: endTime,
-        duration: e.target.duration.value,
-        serviceHeader: e.target.serviceHeader.value,
-        date: e.target.date.value,
-        isComplete: false,
-        isCancelled: false
-      }
+      id: editInitialState.id,
+      guestName: e.target.guestName.value,
+      staffName: e.target.staffName.value,
+      startTime: startTime,
+      endTime: endTime,
+      duration: e.target.duration.value,
+      serviceHeader: e.target.serviceHeader.value,
+      date: e.target.date.value,
+      isComplete: false,
+      isCancelled: false
     };
     const url = `/api/appointments`;
     const requestOptions = {
@@ -81,7 +73,7 @@ const EditAppointment: FC<Props> = ({
       const response = await fetch(url, requestOptions);
       const _data = await response.json();
       if (_data.status === 'success') {
-        updatePageStates(EDITAPPOINTMENT, data.newData);
+        updatePageStates(EDITAPPOINTMENT, data);
       } else {
         return;
       }
