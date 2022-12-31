@@ -86,4 +86,6 @@ mongoAtlasUri = "mongodb+srv://<userName>:<password>@<database>.bdb2nnk.mongodb.
 
 6. Add validation to prevent booking before the current date
 
-7. Typescript Backend
+7. Typescript Backend for Node project
+
+8. Addition of endpoints for additional functionality (removing staff, guests, services)
