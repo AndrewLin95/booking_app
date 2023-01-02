@@ -74,7 +74,7 @@ mongoAtlasUri = "mongodb+srv://<userName>:<password>@<database>.bdb2nnk.mongodb.
 
 ### Areas to Improve
 
-1. Move API calls into a separate folder and import where it is required
+1. For Front-End, move API calls into a separate folder and import where it is required
 
 2. Loading Skeleton for fetch requests
 
